@@ -43,7 +43,7 @@ namespace WebApiSegura.Controllers
                     {
                         usuario.Codigo = sqlDataReader.GetInt32(0);
                         usuario.Identificacion = sqlDataReader.GetString(1);
-                        usuario.Nombre = sqlDataReader.GetString(2);
+                        usuario.nombre = sqlDataReader.GetString(2);
                         usuario.Username = sqlDataReader.GetString(3);
                         usuario.Password = sqlDataReader.GetString(4);
                         usuario.Email = sqlDataReader.GetString(5);
@@ -88,7 +88,7 @@ namespace WebApiSegura.Controllers
                                                             @Password, @Email, @FechaNacimiento, @Estado) ", sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Identificacion",usuario.Identificacion);
-                    sqlCommand.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                    sqlCommand.Parameters.AddWithValue("@Nombre", usuario.nombre);
                     sqlCommand.Parameters.AddWithValue("@Username", usuario.Username);
                     sqlCommand.Parameters.AddWithValue("@Password", usuario.Password);
                     sqlCommand.Parameters.AddWithValue("@Email", usuario.Email);

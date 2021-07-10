@@ -18,7 +18,6 @@ namespace WebApiSegura.Models
         public Moneda()
         {
             this.Cuenta = new HashSet<Cuenta>();
-            this.Pago = new HashSet<Pago>();
         }
     
         public int Codigo { get; set; }
@@ -27,7 +26,5 @@ namespace WebApiSegura.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cuenta> Cuenta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pago> Pago { get; set; }
     }
 }

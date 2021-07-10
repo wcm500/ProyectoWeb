@@ -22,7 +22,6 @@ namespace WebApiSegura.Models
         public decimal Monto { get; set; }
     
         public virtual Cuenta Cuenta { get; set; }
-        public virtual Moneda Moneda { get; set; }
         public virtual Servicio Servicio { get; set; }
     }
 }

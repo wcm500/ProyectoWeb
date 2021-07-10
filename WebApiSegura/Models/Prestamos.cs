@@ -12,16 +12,19 @@ namespace WebApiSegura.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Transferencia
+    public partial class Prestamos
     {
         public int Codigo { get; set; }
-        public int CuentaOrigen { get; set; }
-        public int CuentaDestino { get; set; }
-        public string Descripcion { get; set; }
-        public decimal Monto { get; set; }
-        public System.DateTime FechaHora { get; set; }
-        public string Estado { get; set; }
+        public System.DateTime FechaLimite { get; set; }
+        public System.DateTime FechaInicio { get; set; }
+        public decimal MontoPago { get; set; }
+        public int TipoPrestamo { get; set; }
+        public decimal Interes { get; set; }
+        public int CodigoCuenta { get; set; }
+        public int CodigoSucursal { get; set; }
     
         public virtual Cuenta Cuenta { get; set; }
+        public virtual Sucursal Sucursal { get; set; }
+        public virtual Tipo_Prestamo Tipo_Prestamo { get; set; }
     }
 }

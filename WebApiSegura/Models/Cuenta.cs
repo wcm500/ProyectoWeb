@@ -18,14 +18,15 @@ namespace WebApiSegura.Models
         public Cuenta()
         {
             this.Pago = new HashSet<Pago>();
+            this.Prestamos = new HashSet<Prestamos>();
             this.Transferencia = new HashSet<Transferencia>();
         }
     
         public int Codigo { get; set; }
         public int CodigoUsuario { get; set; }
-        public int CodigoMoneda { get; set; }
         public string Descripcion { get; set; }
         public string IBAN { get; set; }
+        public int CodigoMoneda { get; set; }
         public decimal Saldo { get; set; }
         public string Estado { get; set; }
     
@@ -33,6 +34,8 @@ namespace WebApiSegura.Models
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pago> Pago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prestamos> Prestamos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transferencia> Transferencia { get; set; }
     }

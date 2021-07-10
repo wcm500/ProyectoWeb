@@ -12,30 +12,17 @@ namespace WebApiSegura.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class TipoTarjeta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public TipoTarjeta()
         {
-            this.Cuenta = new HashSet<Cuenta>();
-            this.ServicioCliente = new HashSet<ServicioCliente>();
             this.SolicitidTarjeta = new HashSet<SolicitidTarjeta>();
         }
     
         public int Codigo { get; set; }
-        public string Identificacion { get; set; }
-        public string nombre { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public System.DateTime FechaNacimiento { get; set; }
-        public string Estado { get; set; }
-        public string Email { get; set; }
-        public string Token { get; set; }
+        public string Descripcion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cuenta> Cuenta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServicioCliente> ServicioCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SolicitidTarjeta> SolicitidTarjeta { get; set; }
     }

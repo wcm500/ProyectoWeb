@@ -4,20 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="INTERNET_BANKIN_ULACIT_DWModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="INTERNET_BAKIN_ULACIT_DWModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cuenta">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CodigoUsuario" Type="int" Nullable="false" />
-          <Property Name="CodigoMoneda" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IBAN" Type="varchar" MaxLength="22" Nullable="false" />
+          <Property Name="IBAN" Type="nchar" MaxLength="22" Nullable="false" />
+          <Property Name="CodigoMoneda" Type="int" Nullable="false" />
           <Property Name="Saldo" Type="numeric" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
-        <EntityType Name="Error">
+        <EntityType Name="Errores">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
@@ -25,7 +25,7 @@
           <Property Name="CodigoUsuario" Type="int" Nullable="false" />
           <Property Name="FechaHora" Type="datetime" Nullable="false" />
           <Property Name="Fuente" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Numero" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="Vista" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Accion" Type="varchar" MaxLength="50" Nullable="false" />
@@ -35,13 +35,13 @@
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodigoUsuario" Type="int" Nullable="false" />
-          <Property Name="FechaHora" Type="datetime" Nullable="false" />
-          <Property Name="Navegador" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PlataformaDispositivo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="FabricanteDispositivo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Vista" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Accion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="int" />
+          <Property Name="FechaHora" Type="datetime" />
+          <Property Name="Navegador" Type="varchar" MaxLength="50" />
+          <Property Name="PlataformaDispositivo" Type="varchar" MaxLength="50" />
+          <Property Name="FabricanteDispostivo" Type="varchar" MaxLength="50" />
+          <Property Name="Vista" Type="varchar" MaxLength="50" />
+          <Property Name="Accion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Moneda">
           <Key>
@@ -62,6 +62,19 @@
           <Property Name="FechaHora" Type="datetime" Nullable="false" />
           <Property Name="Monto" Type="numeric" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="Prestamos">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaLimite" Type="datetime" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="MontoPago" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TipoPrestamo" Type="int" Nullable="false" />
+          <Property Name="Interes" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CodigoCuenta" Type="int" Nullable="false" />
+          <Property Name="CodigoSucursal" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Servicio">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -69,6 +82,16 @@
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicioCliente">
+          <Key>
+            <PropertyRef Name="CodigoServicio" />
+          </Key>
+          <Property Name="CodigoServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoAyuda" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Sesion">
           <Key>
@@ -80,6 +103,25 @@
           <Property Name="FechaExpiracion" Type="datetime" Nullable="false" />
           <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="SolicitidTarjeta">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoCliente" Type="int" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+          <Property Name="CondicionLaboral" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IngresoMensual" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CodigoTipoTarjeta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -90,6 +132,20 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Tipo Prestamo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoTarjeta">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <EntityType Name="Transferencia">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -97,9 +153,9 @@
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CuentaOrigen" Type="int" Nullable="false" />
           <Property Name="CuentaDestino" Type="int" Nullable="false" />
-          <Property Name="FechaHora" Type="datetime" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Monto" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
           <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -108,12 +164,12 @@
           </Key>
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Identificacion" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
           <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Cuenta_Moneda">
           <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
@@ -139,30 +195,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Error_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Error" Type="Self.Error" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Error">
-              <PropertyRef Name="CodigoUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Estadistica_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Estadistica">
-              <PropertyRef Name="CodigoUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Pago_Cuenta">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
@@ -175,19 +207,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pago_Moneda">
-          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
-          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Moneda">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Pago">
-              <PropertyRef Name="CodigoMoneda" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pago_Servicio">
+        <Association Name="FK_Pago_Serivicio">
           <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -199,15 +219,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sesion_Usuario">
+        <Association Name="FK_Prestamos_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="CodigoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prestamos_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="CodigoSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prestamos_Tipo Prestamo">
+          <End Role="Tipo Prestamo" Type="Self.Tipo Prestamo" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo Prestamo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="TipoPrestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioCliente_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="*" />
+          <End Role="ServicioCliente" Type="Self.ServicioCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="Codigo" />
             </Principal>
-            <Dependent Role="Sesion">
+            <Dependent Role="ServicioCliente">
               <PropertyRef Name="CodigoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolicitidTarjeta_TipoTarjeta">
+          <End Role="TipoTarjeta" Type="Self.TipoTarjeta" Multiplicity="1" />
+          <End Role="SolicitidTarjeta" Type="Self.SolicitidTarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarjeta">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="SolicitidTarjeta">
+              <PropertyRef Name="CodigoTipoTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolicitidTarjeta_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SolicitidTarjeta" Type="Self.SolicitidTarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="SolicitidTarjeta">
+              <PropertyRef Name="CodigoCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -223,15 +303,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="INTERNET_BANKIN_ULACIT_DWModelStoreContainer">
+        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWModelStoreContainer">
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Errores" EntityType="Self.Errores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estadistica" EntityType="Self.Estadistica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Moneda" EntityType="Self.Moneda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prestamos" EntityType="Self.Prestamos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servicio" EntityType="Self.Servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicioCliente" EntityType="Self.ServicioCliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sesion" EntityType="Self.Sesion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolicitidTarjeta" EntityType="Self.SolicitidTarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo Prestamo" EntityType="Self.Tipo Prestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTarjeta" EntityType="Self.TipoTarjeta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transferencia" EntityType="Self.Transferencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cuenta_Moneda" Association="Self.FK_Cuenta_Moneda">
@@ -242,29 +328,37 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Cuenta" EntitySet="Cuenta" />
           </AssociationSet>
-          <AssociationSet Name="FK_Error_Usuario" Association="Self.FK_Error_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Error" EntitySet="Error" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Estadistica_Usuario" Association="Self.FK_Estadistica_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Estadistica" EntitySet="Estadistica" />
-          </AssociationSet>
           <AssociationSet Name="FK_Pago_Cuenta" Association="Self.FK_Pago_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pago_Moneda" Association="Self.FK_Pago_Moneda">
-            <End Role="Moneda" EntitySet="Moneda" />
-            <End Role="Pago" EntitySet="Pago" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pago_Servicio" Association="Self.FK_Pago_Servicio">
+          <AssociationSet Name="FK_Pago_Serivicio" Association="Self.FK_Pago_Serivicio">
             <End Role="Servicio" EntitySet="Servicio" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sesion_Usuario" Association="Self.FK_Sesion_Usuario">
+          <AssociationSet Name="FK_Prestamos_Cuenta" Association="Self.FK_Prestamos_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prestamos_Sucursal" Association="Self.FK_Prestamos_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prestamos_Tipo Prestamo" Association="Self.FK_Prestamos_Tipo Prestamo">
+            <End Role="Tipo Prestamo" EntitySet="Tipo Prestamo" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioCliente_Usuario" Association="Self.FK_ServicioCliente_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Sesion" EntitySet="Sesion" />
+            <End Role="ServicioCliente" EntitySet="ServicioCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolicitidTarjeta_TipoTarjeta" Association="Self.FK_SolicitidTarjeta_TipoTarjeta">
+            <End Role="TipoTarjeta" EntitySet="TipoTarjeta" />
+            <End Role="SolicitidTarjeta" EntitySet="SolicitidTarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolicitidTarjeta_Usuario" Association="Self.FK_SolicitidTarjeta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SolicitidTarjeta" EntitySet="SolicitidTarjeta" />
           </AssociationSet>
           <AssociationSet Name="FK_Transferencia_Cuenta" Association="Self.FK_Transferencia_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
@@ -275,24 +369,25 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="INTERNET_BANKIN_ULACIT_DWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="INTERNET_BAKIN_ULACIT_DWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Cuenta">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CodigoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="CodigoMoneda" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IBAN" Type="String" MaxLength="22" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IBAN" Type="String" MaxLength="22" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CodigoMoneda" Type="Int32" Nullable="false" />
           <Property Name="Saldo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Moneda" Relationship="Self.FK_Cuenta_Moneda" FromRole="Cuenta" ToRole="Moneda" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Cuenta_Usuario" FromRole="Cuenta" ToRole="Usuario" />
           <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_Cuenta" FromRole="Cuenta" ToRole="Pago" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK_Prestamos_Cuenta" FromRole="Cuenta" ToRole="Prestamos" />
           <NavigationProperty Name="Transferencia" Relationship="Self.FK_Transferencia_Cuenta" FromRole="Cuenta" ToRole="Transferencia" />
         </EntityType>
-        <EntityType Name="Error">
+        <EntityType Name="Errores">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
@@ -300,25 +395,23 @@
           <Property Name="CodigoUsuario" Type="Int32" Nullable="false" />
           <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Fuente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Vista" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_Error_Usuario" FromRole="Error" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Estadistica">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Navegador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PlataformaDispositivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FabricanteDispositivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Vista" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_Estadistica_Usuario" FromRole="Estadistica" ToRole="Usuario" />
+          <Property Name="CodigoUsuario" Type="Int32" />
+          <Property Name="FechaHora" Type="DateTime" Precision="3" />
+          <Property Name="Navegador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlataformaDispositivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FabricanteDispostivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Vista" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Moneda">
           <Key>
@@ -328,7 +421,6 @@
           <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cuenta" Relationship="Self.FK_Cuenta_Moneda" FromRole="Moneda" ToRole="Cuenta" />
-          <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_Moneda" FromRole="Moneda" ToRole="Pago" />
         </EntityType>
         <EntityType Name="Pago">
           <Key>
@@ -341,8 +433,23 @@
           <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Cuenta" Relationship="Self.FK_Pago_Cuenta" FromRole="Pago" ToRole="Cuenta" />
-          <NavigationProperty Name="Moneda" Relationship="Self.FK_Pago_Moneda" FromRole="Pago" ToRole="Moneda" />
-          <NavigationProperty Name="Servicio" Relationship="Self.FK_Pago_Servicio" FromRole="Pago" ToRole="Servicio" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_Pago_Serivicio" FromRole="Pago" ToRole="Servicio" />
+        </EntityType>
+        <EntityType Name="Prestamos">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaLimite" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MontoPago" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TipoPrestamo" Type="Int32" Nullable="false" />
+          <Property Name="Interes" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CodigoCuenta" Type="Int32" Nullable="false" />
+          <Property Name="CodigoSucursal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Prestamos_Cuenta" FromRole="Prestamos" ToRole="Cuenta" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Prestamos_Sucursal" FromRole="Prestamos" ToRole="Sucursal" />
+          <NavigationProperty Name="Tipo_Prestamo" Relationship="Self.FK_Prestamos_Tipo_Prestamo" FromRole="Prestamos" ToRole="Tipo_Prestamo" />
         </EntityType>
         <EntityType Name="Servicio">
           <Key>
@@ -351,7 +458,18 @@
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_Servicio" FromRole="Servicio" ToRole="Pago" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_Serivicio" FromRole="Servicio" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="ServicioCliente">
+          <Key>
+            <PropertyRef Name="CodigoServicio" />
+          </Key>
+          <Property Name="CodigoServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoAyuda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_ServicioCliente_Usuario" FromRole="ServicioCliente" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Sesion">
           <Key>
@@ -362,7 +480,28 @@
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaExpiracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_Sesion_Usuario" FromRole="Sesion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="SolicitidTarjeta">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoCliente" Type="Int32" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CondicionLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IngresoMensual" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CodigoTipoTarjeta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoTarjeta" Relationship="Self.FK_SolicitidTarjeta_TipoTarjeta" FromRole="SolicitidTarjeta" ToRole="TipoTarjeta" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_SolicitidTarjeta_Usuario" FromRole="SolicitidTarjeta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK_Prestamos_Sucursal" FromRole="Sucursal" ToRole="Prestamos" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -374,6 +513,22 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Tipo_Prestamo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK_Prestamos_Tipo_Prestamo" FromRole="Tipo_Prestamo" ToRole="Prestamos" />
+        </EntityType>
+        <EntityType Name="TipoTarjeta">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SolicitidTarjeta" Relationship="Self.FK_SolicitidTarjeta_TipoTarjeta" FromRole="TipoTarjeta" ToRole="SolicitidTarjeta" />
+        </EntityType>
         <EntityType Name="Transferencia">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -381,9 +536,9 @@
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CuentaOrigen" Type="Int32" Nullable="false" />
           <Property Name="CuentaDestino" Type="Int32" Nullable="false" />
-          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cuenta" Relationship="Self.FK_Transferencia_Cuenta" FromRole="Transferencia" ToRole="Cuenta" />
         </EntityType>
@@ -393,16 +548,15 @@
           </Key>
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cuenta" Relationship="Self.FK_Cuenta_Usuario" FromRole="Usuario" ToRole="Cuenta" />
-          <NavigationProperty Name="Error" Relationship="Self.FK_Error_Usuario" FromRole="Usuario" ToRole="Error" />
-          <NavigationProperty Name="Estadistica" Relationship="Self.FK_Estadistica_Usuario" FromRole="Usuario" ToRole="Estadistica" />
-          <NavigationProperty Name="Sesion" Relationship="Self.FK_Sesion_Usuario" FromRole="Usuario" ToRole="Sesion" />
+          <NavigationProperty Name="ServicioCliente" Relationship="Self.FK_ServicioCliente_Usuario" FromRole="Usuario" ToRole="ServicioCliente" />
+          <NavigationProperty Name="SolicitidTarjeta" Relationship="Self.FK_SolicitidTarjeta_Usuario" FromRole="Usuario" ToRole="SolicitidTarjeta" />
         </EntityType>
         <Association Name="FK_Cuenta_Moneda">
           <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
@@ -440,6 +594,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Prestamos_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="CodigoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Transferencia_Cuenta">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Transferencia" Type="Self.Transferencia" Multiplicity="*" />
@@ -452,43 +618,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Error_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Error" Type="Self.Error" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Error">
-              <PropertyRef Name="CodigoUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Estadistica_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Estadistica">
-              <PropertyRef Name="CodigoUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pago_Moneda">
-          <End Role="Moneda" Type="Self.Moneda" Multiplicity="1" />
-          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Moneda">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Pago">
-              <PropertyRef Name="CodigoMoneda" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pago_Servicio">
+        <Association Name="FK_Pago_Serivicio">
           <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -500,27 +630,81 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sesion_Usuario">
+        <Association Name="FK_Prestamos_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="CodigoSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prestamos_Tipo_Prestamo">
+          <End Role="Tipo_Prestamo" Type="Self.Tipo_Prestamo" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Prestamo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="TipoPrestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioCliente_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="*" />
+          <End Role="ServicioCliente" Type="Self.ServicioCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="Codigo" />
             </Principal>
-            <Dependent Role="Sesion">
+            <Dependent Role="ServicioCliente">
               <PropertyRef Name="CodigoUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="INTERNET_BANKIN_ULACIT_DWEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_SolicitidTarjeta_TipoTarjeta">
+          <End Role="TipoTarjeta" Type="Self.TipoTarjeta" Multiplicity="1" />
+          <End Role="SolicitidTarjeta" Type="Self.SolicitidTarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarjeta">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="SolicitidTarjeta">
+              <PropertyRef Name="CodigoTipoTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolicitidTarjeta_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SolicitidTarjeta" Type="Self.SolicitidTarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="SolicitidTarjeta">
+              <PropertyRef Name="CodigoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
-          <EntitySet Name="Error" EntityType="Self.Error" />
+          <EntitySet Name="Errores" EntityType="Self.Errores" />
           <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />
           <EntitySet Name="Moneda" EntityType="Self.Moneda" />
           <EntitySet Name="Pago" EntityType="Self.Pago" />
+          <EntitySet Name="Prestamos" EntityType="Self.Prestamos" />
           <EntitySet Name="Servicio" EntityType="Self.Servicio" />
+          <EntitySet Name="ServicioCliente" EntityType="Self.ServicioCliente" />
           <EntitySet Name="Sesion" EntityType="Self.Sesion" />
+          <EntitySet Name="SolicitidTarjeta" EntityType="Self.SolicitidTarjeta" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tipo_Prestamo" EntityType="Self.Tipo_Prestamo" />
+          <EntitySet Name="TipoTarjeta" EntityType="Self.TipoTarjeta" />
           <EntitySet Name="Transferencia" EntityType="Self.Transferencia" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Cuenta_Moneda" Association="Self.FK_Cuenta_Moneda">
@@ -535,29 +719,37 @@
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
+          <AssociationSet Name="FK_Prestamos_Cuenta" Association="Self.FK_Prestamos_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Transferencia_Cuenta" Association="Self.FK_Transferencia_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Transferencia" EntitySet="Transferencia" />
           </AssociationSet>
-          <AssociationSet Name="FK_Error_Usuario" Association="Self.FK_Error_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Error" EntitySet="Error" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Estadistica_Usuario" Association="Self.FK_Estadistica_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Estadistica" EntitySet="Estadistica" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pago_Moneda" Association="Self.FK_Pago_Moneda">
-            <End Role="Moneda" EntitySet="Moneda" />
-            <End Role="Pago" EntitySet="Pago" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pago_Servicio" Association="Self.FK_Pago_Servicio">
+          <AssociationSet Name="FK_Pago_Serivicio" Association="Self.FK_Pago_Serivicio">
             <End Role="Servicio" EntitySet="Servicio" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sesion_Usuario" Association="Self.FK_Sesion_Usuario">
+          <AssociationSet Name="FK_Prestamos_Sucursal" Association="Self.FK_Prestamos_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prestamos_Tipo_Prestamo" Association="Self.FK_Prestamos_Tipo_Prestamo">
+            <End Role="Tipo_Prestamo" EntitySet="Tipo_Prestamo" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioCliente_Usuario" Association="Self.FK_ServicioCliente_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Sesion" EntitySet="Sesion" />
+            <End Role="ServicioCliente" EntitySet="ServicioCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolicitidTarjeta_TipoTarjeta" Association="Self.FK_SolicitidTarjeta_TipoTarjeta">
+            <End Role="TipoTarjeta" EntitySet="TipoTarjeta" />
+            <End Role="SolicitidTarjeta" EntitySet="SolicitidTarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolicitidTarjeta_Usuario" Association="Self.FK_SolicitidTarjeta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SolicitidTarjeta" EntitySet="SolicitidTarjeta" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -565,23 +757,23 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="INTERNET_BANKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BANKIN_ULACIT_DWEntities">
+        <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities">
           <EntitySetMapping Name="Cuenta">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Cuenta">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
-                <ScalarProperty Name="CodigoMoneda" ColumnName="CodigoMoneda" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="CodigoMoneda" ColumnName="CodigoMoneda" />
                 <ScalarProperty Name="Saldo" ColumnName="Saldo" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Error">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Error">
-              <MappingFragment StoreEntitySet="Error">
+          <EntitySetMapping Name="Errores">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Errores">
+              <MappingFragment StoreEntitySet="Errores">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
                 <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
@@ -594,21 +786,21 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estadistica">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Estadistica">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Estadistica">
               <MappingFragment StoreEntitySet="Estadistica">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
                 <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
                 <ScalarProperty Name="Navegador" ColumnName="Navegador" />
                 <ScalarProperty Name="PlataformaDispositivo" ColumnName="PlataformaDispositivo" />
-                <ScalarProperty Name="FabricanteDispositivo" ColumnName="FabricanteDispositivo" />
+                <ScalarProperty Name="FabricanteDispostivo" ColumnName="FabricanteDispostivo" />
                 <ScalarProperty Name="Vista" ColumnName="Vista" />
                 <ScalarProperty Name="Accion" ColumnName="Accion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Moneda">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Moneda">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Moneda">
               <MappingFragment StoreEntitySet="Moneda">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -617,7 +809,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pago">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Pago">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Pago">
               <MappingFragment StoreEntitySet="Pago">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="CodigoServicio" ColumnName="CodigoServicio" />
@@ -628,8 +820,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Prestamos">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Prestamos">
+              <MappingFragment StoreEntitySet="Prestamos">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="MontoPago" ColumnName="MontoPago" />
+                <ScalarProperty Name="TipoPrestamo" ColumnName="TipoPrestamo" />
+                <ScalarProperty Name="Interes" ColumnName="Interes" />
+                <ScalarProperty Name="CodigoCuenta" ColumnName="CodigoCuenta" />
+                <ScalarProperty Name="CodigoSucursal" ColumnName="CodigoSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Servicio">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Servicio">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Servicio">
               <MappingFragment StoreEntitySet="Servicio">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -637,8 +843,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ServicioCliente">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.ServicioCliente">
+              <MappingFragment StoreEntitySet="ServicioCliente">
+                <ScalarProperty Name="CodigoServicio" ColumnName="CodigoServicio" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoAyuda" ColumnName="TipoAyuda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Sesion">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Sesion">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Sesion">
               <MappingFragment StoreEntitySet="Sesion">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
@@ -648,8 +865,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SolicitidTarjeta">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.SolicitidTarjeta">
+              <MappingFragment StoreEntitySet="SolicitidTarjeta">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="CondicionLaboral" ColumnName="CondicionLaboral" />
+                <ScalarProperty Name="IngresoMensual" ColumnName="IngresoMensual" />
+                <ScalarProperty Name="CodigoTipoTarjeta" ColumnName="CodigoTipoTarjeta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sucursal">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Sucursal">
+              <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.sysdiagrams">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -659,30 +897,46 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Prestamo">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Tipo_Prestamo">
+              <MappingFragment StoreEntitySet="Tipo Prestamo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoTarjeta">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.TipoTarjeta">
+              <MappingFragment StoreEntitySet="TipoTarjeta">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Transferencia">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Transferencia">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Transferencia">
               <MappingFragment StoreEntitySet="Transferencia">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="CuentaOrigen" ColumnName="CuentaOrigen" />
                 <ScalarProperty Name="CuentaDestino" ColumnName="CuentaDestino" />
-                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="INTERNET_BANKIN_ULACIT_DWModel.Usuario">
+            <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

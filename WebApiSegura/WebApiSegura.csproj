@@ -199,50 +199,68 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cuenta.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Error.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+    <Compile Include="Models\Errores.cs">
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Estadistica.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginRequest.cs" />
-    <Compile Include="Models\ModelIB.Context.cs">
+    <Compile Include="Models\ModelB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelIB.Context.tt</DependentUpon>
+      <DependentUpon>ModelB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelIB.cs">
+    <Compile Include="Models\ModelB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelIB.Designer.cs">
+    <Compile Include="Models\ModelB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelIB.edmx</DependentUpon>
+      <DependentUpon>ModelB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Moneda.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pago.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prestamos.cs">
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Servicio.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServicioCliente.cs">
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sesion.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SolicitidTarjeta.cs">
+      <DependentUpon>ModelB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sucursal.cs">
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoTarjeta.cs">
+      <DependentUpon>ModelB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tipo_Prestamo.cs">
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Transferencia.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
-      <DependentUpon>ModelIB.tt</DependentUpon>
+      <DependentUpon>ModelB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -255,15 +273,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ModelIB.Context.tt">
+    <Content Include="Models\ModelB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelIB.Context.cs</LastGenOutput>
-      <DependentUpon>ModelIB.edmx</DependentUpon>
+      <DependentUpon>ModelB.edmx</DependentUpon>
+      <LastGenOutput>ModelB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelIB.tt">
+    <Content Include="Models\ModelB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelIB.edmx</DependentUpon>
-      <LastGenOutput>ModelIB.cs</LastGenOutput>
+      <DependentUpon>ModelB.edmx</DependentUpon>
+      <LastGenOutput>ModelB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -286,12 +304,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\ModelIB.edmx">
+    <EntityDeploy Include="Models\ModelB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelIB.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModelIB.edmx.diagram">
-      <DependentUpon>ModelIB.edmx</DependentUpon>
+    <Content Include="Models\ModelB.edmx.diagram">
+      <DependentUpon>ModelB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

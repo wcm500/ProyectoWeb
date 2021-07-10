@@ -12,17 +12,16 @@ namespace WebApiSegura.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Error
+    public partial class SolicitidTarjeta
     {
         public int Codigo { get; set; }
-        public int CodigoUsuario { get; set; }
-        public System.DateTime FechaHora { get; set; }
-        public string Fuente { get; set; }
-        public string Numero { get; set; }
-        public string Descripcion { get; set; }
-        public string Vista { get; set; }
-        public string Accion { get; set; }
+        public int CodigoCliente { get; set; }
+        public System.DateTime FechaSolicitud { get; set; }
+        public string CondicionLaboral { get; set; }
+        public decimal IngresoMensual { get; set; }
+        public int CodigoTipoTarjeta { get; set; }
     
+        public virtual TipoTarjeta TipoTarjeta { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

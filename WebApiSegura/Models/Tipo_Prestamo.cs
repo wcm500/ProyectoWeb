@@ -12,16 +12,18 @@ namespace WebApiSegura.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Transferencia
+    public partial class Tipo_Prestamo
     {
-        public int Codigo { get; set; }
-        public int CuentaOrigen { get; set; }
-        public int CuentaDestino { get; set; }
-        public string Descripcion { get; set; }
-        public decimal Monto { get; set; }
-        public System.DateTime FechaHora { get; set; }
-        public string Estado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tipo_Prestamo()
+        {
+            this.Prestamos = new HashSet<Prestamos>();
+        }
     
-        public virtual Cuenta Cuenta { get; set; }
+        public int Codigo { get; set; }
+        public string Descripcion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prestamos> Prestamos { get; set; }
     }
 }

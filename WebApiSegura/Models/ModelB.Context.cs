@@ -13,10 +13,10 @@ namespace WebApiSegura.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class INTERNET_BANKIN_ULACIT_DWEntities : DbContext
+    public partial class INTERNET_BAKIN_ULACIT_DWEntities : DbContext
     {
-        public INTERNET_BANKIN_ULACIT_DWEntities()
-            : base("name=INTERNET_BANKIN_ULACIT_DWEntities")
+        public INTERNET_BAKIN_ULACIT_DWEntities()
+            : base("name=INTERNET_BAKIN_ULACIT_DWEntities")
         {
         }
     
@@ -26,13 +26,19 @@ namespace WebApiSegura.Models
         }
     
         public virtual DbSet<Cuenta> Cuenta { get; set; }
-        public virtual DbSet<Error> Error { get; set; }
+        public virtual DbSet<Errores> Errores { get; set; }
         public virtual DbSet<Estadistica> Estadistica { get; set; }
         public virtual DbSet<Moneda> Moneda { get; set; }
         public virtual DbSet<Pago> Pago { get; set; }
+        public virtual DbSet<Prestamos> Prestamos { get; set; }
         public virtual DbSet<Servicio> Servicio { get; set; }
+        public virtual DbSet<ServicioCliente> ServicioCliente { get; set; }
         public virtual DbSet<Sesion> Sesion { get; set; }
+        public virtual DbSet<SolicitidTarjeta> SolicitidTarjeta { get; set; }
+        public virtual DbSet<Sucursal> Sucursal { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Tipo_Prestamo> Tipo_Prestamo { get; set; }
+        public virtual DbSet<TipoTarjeta> TipoTarjeta { get; set; }
         public virtual DbSet<Transferencia> Transferencia { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }
