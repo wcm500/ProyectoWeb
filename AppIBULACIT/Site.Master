@@ -54,6 +54,7 @@
                   <li><a href="Views/frmServicio.aspx">Servicios</a></li>
                   <li><a href="Views/frmMoneda.aspx">Monedas</a></li><li>
                   <li><a href="Views/frmServicioCliente.aspx">Servicio Cliente</a></li>
+                  <li><a href="/Views/frmSucursal.aspx">Sucursal</a></li>
                 </ul>
               </li>
               <li class="dropdown">
