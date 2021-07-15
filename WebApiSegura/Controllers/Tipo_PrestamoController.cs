@@ -25,7 +25,7 @@ namespace WebApiSegura.Controllers
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
                     SqlCommand sqlCommand = new SqlCommand(@"SELECT *
-                                                             FROM Tipo_Prestamo
+                                                             FROM [Tipo Prestamo]
                                                              WHERE Codigo = @Codigo", sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Codigo", id);
@@ -59,8 +59,7 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"SELECT *
-                                                             FROM Tipo_Prestamo", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand(@"SELECT Codigo, Descripcion FROM [Tipo Prestamo]", sqlConnection);
 
                     sqlConnection.Open();
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
@@ -92,7 +91,7 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"INSERT INTO Tipo_Prestamo (Descripcion)
+                    SqlCommand sqlCommand = new SqlCommand(@"INSERT INTO [Tipo Prestamo] (Descripcion)
                                                                                 VALUES (@Descripcion) ", sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Descripcion", tipo_prestamo.Descripcion);
@@ -125,7 +124,7 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"UPDATE Tipo_Prestamo SET Descripcion = @Descripcion,
+                    SqlCommand sqlCommand = new SqlCommand(@"UPDATE [Tipo Prestamo] SET Descripcion = @Descripcion
                                                              WHERE Codigo = @Codigo ", sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Codigo", tipo_prestamo.Codigo);
@@ -158,7 +157,7 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"DELETE Tipo_Prestamo WHERE Codigo= @Codigo ", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand(@"DELETE [Tipo Prestamo] WHERE Codigo= @Codigo ", sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Codigo", id);
 

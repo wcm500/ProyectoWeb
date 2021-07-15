@@ -194,7 +194,9 @@
     <Compile Include="Controllers\PrestamosController.cs" />
     <Compile Include="Controllers\ServicioClienteController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
+    <Compile Include="Controllers\SolicitudTarjetaController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
+    <Compile Include="Controllers\TipoTarjetaController.cs" />
     <Compile Include="Controllers\Tipo_PrestamoController.cs" />
     <Compile Include="Controllers\TokenGenerator.cs" />
     <Compile Include="Controllers\TokenValidationHandler.cs" />

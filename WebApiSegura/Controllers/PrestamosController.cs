@@ -11,6 +11,7 @@ using WebApiSegura.Models;
 namespace WebApiSegura.Controllers
 {
     [Authorize]
+    //[AllowAnonymous]
     [RoutePrefix("api/Prestamos")]
     public class PrestamosController : ApiController
     {
@@ -147,7 +148,7 @@ namespace WebApiSegura.Controllers
                     SqlCommand sqlCommand = new SqlCommand(@"UPDATE Prestamos SET FechaLimite = @FechaLimite,
                                                                              FechaInicio = @FechaInicio,
                                                                              MontoPago = @MontoPago,
-                                                                             TipoPrestamo=@TipoPrestamo
+                                                                             TipoPrestamo=@TipoPrestamo,
                                                                              Interes = @Interes,
                                                                              CodigoCuenta = @CodigoCuenta,
                                                                              CodigoSucursal = @CodigoSucursal

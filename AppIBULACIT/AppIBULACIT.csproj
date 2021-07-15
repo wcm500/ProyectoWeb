@@ -221,6 +221,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,6 +235,7 @@
     <Compile Include="Controllers\MonedaManager.cs" />
     <Compile Include="Controllers\ServicioManager.cs" />
     <Compile Include="Controllers\SesionManager.cs" />
+    <Compile Include="Controllers\SucursalManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
     <Compile Include="CustomErrors\frmError.aspx.cs">
       <DependentUpon>frmError.aspx</DependentUpon>

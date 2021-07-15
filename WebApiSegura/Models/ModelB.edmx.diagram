@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.Servicio" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.ServicioCliente" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.Sesion" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.SolicitidTarjeta" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.SolicitidTarjeta" Width="2" PointX="6.125" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.Sucursal" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.Tipo_Prestamo" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
