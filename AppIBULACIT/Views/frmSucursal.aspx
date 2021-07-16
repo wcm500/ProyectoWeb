@@ -23,7 +23,7 @@
         $(document).ready(function () { //filtrar el datagridview
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#MainContent_gvServicios tr").filter(function () {
+                $("#MainContent_gvSurcursales tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -79,7 +79,7 @@
             <table style="width: 100%;">
                 <tr>
                   <td><asp:Literal ID="ltrCodigoMant" Text="Codigo" runat="server" /></td>
-                  <td><asp:TextBox ID="txtCodigoMant" runat="server" Enabled="false" CssClass="form-control" /></td>
+                  <td><asp:TextBox ID="txtCodigoMant" runat="server" Enabled="false" CssClass="form-control"/></td>
               </tr>
               <tr>
                   <td><asp:Literal ID="ltrNombre" Text="Nombre" runat="server" /></td>
@@ -87,7 +87,7 @@
               </tr>
                <tr>
                   <td><asp:Literal ID="ltrUbicacion" Text="Ubicacion" runat="server" /></td>
-                  <td><asp:TextBox ID="txtUbicacion" runat="server" CssClass="form-control" /></td>
+                  <td><asp:TextBox ID="txtUbicacion" runat="server" CssClass="form-control"/></td>
               </tr>
               <tr>
                   <td><asp:Literal Text="Estado" runat="server" /></td>
