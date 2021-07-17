@@ -169,13 +169,6 @@ namespace AppIBULACIT.Views
                 }
             }
 
-
-
-
-
-
-
-
             else  /*Modificar*/
             {
                 if (ValidarModificar())

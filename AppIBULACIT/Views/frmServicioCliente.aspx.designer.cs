@@ -15,13 +15,13 @@ namespace AppIBULACIT.Views
     {
 
         /// <summary>
-        /// Control gvServicios.
+        /// Control gvServicioCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvServicios;
+        protected global::System.Web.UI.WebControls.GridView gvServicioCliente;
 
         /// <summary>
         /// Control btnNuevo.
@@ -105,6 +105,24 @@ namespace AppIBULACIT.Views
         protected global::System.Web.UI.WebControls.TextBox txtCodigoMant;
 
         /// <summary>
+        /// Control ltrCodigoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrCodigoUsuario;
+
+        /// <summary>
+        /// Control txtCodigoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoUsuario;
+
+        /// <summary>
         /// Control ltrDescripcion.
         /// </summary>
         /// <remarks>
@@ -121,6 +139,24 @@ namespace AppIBULACIT.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+
+        /// <summary>
+        /// Control ltrFechaCreacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrFechaCreacion;
+
+        /// <summary>
+        /// Control txtFechaCreacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaCreacion;
 
         /// <summary>
         /// Control ddlEstadoMant.

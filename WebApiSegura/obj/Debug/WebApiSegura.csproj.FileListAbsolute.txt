@@ -339,3 +339,4 @@ D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegu
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.csproj.CopyComplete
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.pdb
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.csprojAssemblyReference.cache
