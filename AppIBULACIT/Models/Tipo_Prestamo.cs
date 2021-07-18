@@ -7,6 +7,7 @@ namespace AppIBULACIT.Models
 {
     public class Tipo_Prestamo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tipo_Prestamo()
         {
             this.Prestamos = new HashSet<Prestamos>();

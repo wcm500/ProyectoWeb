@@ -12,7 +12,7 @@ namespace AppIBULACIT.Controllers
 {
     public class TipoPrestamoManager
     {
-        string UrlBase = "http://localhost:49220/api/TipoPrestamo/";
+        string UrlBase = "http://localhost:49220/api/Tipo_Prestamo/";
 
         HttpClient GetClient(string token)
         {

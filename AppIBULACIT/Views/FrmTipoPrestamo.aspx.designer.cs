@@ -11,7 +11,7 @@ namespace AppIBULACIT.Views
 {
 
 
-    public partial class FrmTipoPrestamo
+    public partial class frmTipoPrestamo
     {
 
         /// <summary>

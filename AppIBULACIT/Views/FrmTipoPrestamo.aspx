@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FrmTipoPrestamo.aspx.cs" Inherits="AppIBULACIT.Views.FrmTipoPrestamo" %>
+﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmTipoPrestamo.aspx.cs" Inherits="AppIBULACIT.Views.frmTipoPrestamo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <script type="text/javascript">
+    <script type="text/javascript">
         
        function openModal() {
                  $('#myModal').modal('show'); //ventana de mensajes
@@ -21,15 +21,15 @@
         $(document).ready(function () { //filtrar el datagridview
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#MainContent_gvServicioCliente tr").filter(function () {
+                $("#MainContent_gvTipoPrestamo tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
         });
-     </script> 
+    </script> 
     <h1><asp:Label Text="Tipos de Prestamos" runat="server"></asp:Label></h1>
     <input id="myInput" Placeholder="Buscar" class="form-control" type="text" />
-    <asp:GridView ID="gvTipoPrestamo" OnRowCommand="gvServicioCliente_RowCommand" runat="server" AutoGenerateColumns="False" 
+    <asp:GridView ID="gvTipoPrestamo" OnRowCommand="gvTipoPrestamo_RowCommand" runat="server" AutoGenerateColumns="False" 
         CssClass="table table-sm" HeaderStyle-CssClass="thead-dark" HeaderStyle-BackColor="#243054"
         HeaderStyle-ForeColor="White" AlternatingRowStyle-BackColor="LightBlue" Width="100%">
     <Columns>
@@ -39,28 +39,28 @@
         <asp:ButtonField HeaderText="Eliminar" CommandName="Eliminar" ControlStyle-CssClass="btn btn-danger" ButtonType="Button" Text="Eliminar" />
     </Columns>
     </asp:GridView>
-    <asp:LinkButton type="button" OnClick="btnNuevo_Click" CssClass="btn btn-success" ID="btnNuevo"  runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-floppy-disk'></span> Nuevo" />
+    <asp:LinkButton type="button" ID="btnNuevo" OnClick="btnNuevo_Click" runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-floppy-disk'></span> Nuevo"></asp:LinkButton>
     <br />
     <asp:Label ID="lblStatus" ForeColor="Maroon" runat="server" Visible="false" />
     <!-- VENTANA MODAL -->
-  <div id="myModal" class="modal fade" role="dialog">
+      <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Mantenimiento de Tipos de Prestamos</h4>
+        <h4 class="modal-title">Mantenimiento de sucursales </h4>
       </div>
       <div class="modal-body">
         <p><asp:Literal ID="ltrModalMensaje" runat="server" /><asp:Label ID="lblCodigoEliminar" runat="server" /></p>
       </div>
       <div class="modal-footer">
-         <asp:LinkButton type="button" CssClass="btn btn-success" ID="btnAceptarModal" OnClick="btnAceptarModal_Click"  runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-ok'></span> Aceptar" />
-         <asp:LinkButton type="button"  CssClass="btn btn-danger" ID="btnCancelarModal" OnClick="btnCancelarModal_Click" runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-remove'></span> Cerrar" />
+         <asp:LinkButton type="button" CssClass="btn btn-success" ID="btnAceptarModal" OnClick="btnAceptarModal_Click" runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-ok'></span> Aceptar" />
+         <asp:LinkButton type="button" CssClass="btn btn-danger" ID="btnCancelarModal" OnClick="btnCancelarModal_Click" runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-remove'></span> Cerrar" />
       </div>
     </div>
   </div>
 </div>
-     <!--VENTANA DE MANTENIMIENTO -->
+    <!--VENTANA DE MANTENIMIENTO -->
   <div id="myModalMantenimiento" class="modal fade" role="dialog">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
