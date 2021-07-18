@@ -261,6 +261,7 @@
     <Content Include="Views\frmServicio.aspx" />
     <Content Include="Views\frmServicioCliente.aspx" />
     <Content Include="Views\frmSucursal.aspx" />
+    <Content Include="Views\FrmTipoPrestamo.aspx" />
     <Content Include="Views\frmTipoTarjeta.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -293,6 +294,7 @@
     <Compile Include="Controllers\ServicioManager.cs" />
     <Compile Include="Controllers\SesionManager.cs" />
     <Compile Include="Controllers\SucursalManager.cs" />
+    <Compile Include="Controllers\TipoPrestamoManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
     <Compile Include="CustomErrors\frmError.aspx.cs">
       <DependentUpon>frmError.aspx</DependentUpon>
@@ -329,6 +331,7 @@
     <Compile Include="Models\ServicioCliente.cs" />
     <Compile Include="Models\Sesion.cs" />
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\Tipo_Prestamo.cs" />
     <Compile Include="Models\Transferencia.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -394,6 +397,13 @@
     </Compile>
     <Compile Include="Views\frmSucursal.aspx.designer.cs">
       <DependentUpon>frmSucursal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmTipoPrestamo.aspx.cs">
+      <DependentUpon>FrmTipoPrestamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FrmTipoPrestamo.aspx.designer.cs">
+      <DependentUpon>FrmTipoPrestamo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\frmTipoTarjeta.aspx.cs">
       <DependentUpon>frmTipoTarjeta.aspx</DependentUpon>

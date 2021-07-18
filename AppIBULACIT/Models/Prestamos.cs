@@ -18,6 +18,6 @@ namespace AppIBULACIT.Models
 
         public virtual Cuenta Cuenta { get; set; }
         public virtual Sucursal Sucursal { get; set; }
-        //public virtual Tipo_Prestamo Tipo_Prestamo { get; set; }
+        public virtual Tipo_Prestamo Tipo_Prestamo { get; set; }
     }
 }
