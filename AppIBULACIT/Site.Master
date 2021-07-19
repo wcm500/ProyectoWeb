@@ -56,6 +56,8 @@
                   <li><a href="Views/frmServicioCliente.aspx">Servicio Cliente</a></li>
                   <li><a href="/Views/frmSucursal.aspx">Sucursal</a></li>
                   <li><a href="/Views/frmTipoPrestamo.aspx">Tipos de Prestamos</a></li>
+                  <li><a href="/Views/frmPrestamo.aspx">Prestamos</a></li>
+
                 </ul>
               </li>
               <li class="dropdown">

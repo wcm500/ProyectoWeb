@@ -258,6 +258,7 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\frmCuenta.aspx" />
     <Content Include="Views\frmMoneda.aspx" />
+    <Content Include="Views\frmPrestamo.aspx" />
     <Content Include="Views\frmServicio.aspx" />
     <Content Include="Views\frmServicioCliente.aspx" />
     <Content Include="Views\frmSucursal.aspx" />
@@ -290,6 +291,8 @@
     <Compile Include="Controllers\ErrorManager.cs" />
     <Compile Include="Controllers\EstadisticaManager.cs" />
     <Compile Include="Controllers\MonedaManager.cs" />
+    <Compile Include="Controllers\Prestamo.cs" />
+    <Compile Include="Controllers\PrestamoManager.cs" />
     <Compile Include="Controllers\ServicioClienteManager.cs" />
     <Compile Include="Controllers\ServicioManager.cs" />
     <Compile Include="Controllers\SesionManager.cs" />
@@ -376,6 +379,13 @@
     </Compile>
     <Compile Include="Views\frmMoneda.aspx.designer.cs">
       <DependentUpon>frmMoneda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmPrestamo.aspx.cs">
+      <DependentUpon>frmPrestamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\frmPrestamo.aspx.designer.cs">
+      <DependentUpon>frmPrestamo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\frmServicio.aspx.cs">
       <DependentUpon>frmServicio.aspx</DependentUpon>
