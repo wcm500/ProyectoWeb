@@ -70,7 +70,7 @@
       <PropertyRef Name="Codigo" />
     </Key>
     <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FechaLimite" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Plazos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="MontoPago" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="TipoPrestamo" Type="Int32" Nullable="false" />
@@ -131,6 +131,7 @@
     <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Prestamos" Relationship="Self.FK_Prestamos_Sucursal" FromRole="Sucursal" ToRole="Prestamos" />
   </EntityType>
   <EntityType Name="sysdiagrams">
@@ -320,7 +321,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
     <EntitySet Name="Errores" EntityType="Self.Errores" />
     <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />

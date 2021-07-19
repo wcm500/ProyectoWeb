@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities">
+  <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities1">
     <EntitySetMapping Name="Cuenta">
       <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Cuenta">
         <MappingFragment StoreEntitySet="Cuenta">
@@ -67,7 +67,7 @@
       <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Prestamos">
         <MappingFragment StoreEntitySet="Prestamos">
           <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-          <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
+          <ScalarProperty Name="Plazos" ColumnName="Plazos" />
           <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
           <ScalarProperty Name="MontoPago" ColumnName="MontoPago" />
           <ScalarProperty Name="TipoPrestamo" ColumnName="TipoPrestamo" />
@@ -126,6 +126,7 @@
           <ScalarProperty Name="Codigo" ColumnName="Codigo" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

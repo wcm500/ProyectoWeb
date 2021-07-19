@@ -11,17 +11,17 @@ namespace AppIBULACIT.Views
 {
 
 
-    public partial class frmPrestamo
+    public partial class frmSolicitidTarjeta
     {
 
         /// <summary>
-        /// Control gvPrestamo.
+        /// Control gvSolicitudTarjetas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPrestamo;
+        protected global::System.Web.UI.WebControls.GridView gvSolicitudTarjetas;
 
         /// <summary>
         /// Control btnNuevo.
@@ -105,76 +105,67 @@ namespace AppIBULACIT.Views
         protected global::System.Web.UI.WebControls.TextBox txtCodigoMant;
 
         /// <summary>
-        /// Control ltrFechaInicio.
+        /// Control ltrCodigoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrFechaInicio;
+        protected global::System.Web.UI.WebControls.Literal ltrCodigoCliente;
 
         /// <summary>
-        /// Control txtFechaInicio.
+        /// Control txtCodigoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaInicio;
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoCliente;
 
         /// <summary>
-        /// Control ddlEstadoMant.
+        /// Control ltrFechaSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEstadoMant;
+        protected global::System.Web.UI.WebControls.Literal ltrFechaSolicitud;
 
         /// <summary>
-        /// Control ltrMontoPago.
+        /// Control txtFechaSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrMontoPago;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaSolicitud;
 
         /// <summary>
-        /// Control txtMontoPago.
+        /// Control ddlCondicionLaboral.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMontoPago;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCondicionLaboral;
 
         /// <summary>
-        /// Control RegularExpressionValidator1.
+        /// Control ltrIngresoMensual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.Literal ltrIngresoMensual;
 
         /// <summary>
-        /// Control ltrInteres.
+        /// Control txtIngresoMensual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrInteres;
-
-        /// <summary>
-        /// Control txtInteres.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInteres;
+        protected global::System.Web.UI.WebControls.TextBox txtIngresoMensual;
 
         /// <summary>
         /// Control vldNumber.
@@ -186,58 +177,13 @@ namespace AppIBULACIT.Views
         protected global::System.Web.UI.WebControls.RegularExpressionValidator vldNumber;
 
         /// <summary>
-        /// Control ltrTipoPrestamo.
+        /// Control ddlCodigoTipoTarjeta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrTipoPrestamo;
-
-        /// <summary>
-        /// Control ddlTipoPrestamo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoPrestamo;
-
-        /// <summary>
-        /// Control ltrCodigoCuenta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCodigoCuenta;
-
-        /// <summary>
-        /// Control ddlCuenta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCuenta;
-
-        /// <summary>
-        /// Control ltrSucursal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrSucursal;
-
-        /// <summary>
-        /// Control ddlSucursal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSucursal;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCodigoTipoTarjeta;
 
         /// <summary>
         /// Control lblResultado.

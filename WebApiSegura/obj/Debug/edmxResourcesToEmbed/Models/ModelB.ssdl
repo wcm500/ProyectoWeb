@@ -62,7 +62,7 @@
       <PropertyRef Name="Codigo" />
     </Key>
     <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FechaLimite" Type="datetime" Nullable="false" />
+    <Property Name="Plazos" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="FechaInicio" Type="datetime" Nullable="false" />
     <Property Name="MontoPago" Type="numeric" Precision="18" Scale="2" Nullable="false" />
     <Property Name="TipoPrestamo" Type="int" Nullable="false" />
@@ -116,6 +116,7 @@
     <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

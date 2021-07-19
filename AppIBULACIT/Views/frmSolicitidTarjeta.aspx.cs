@@ -1,6 +1,5 @@
 ﻿using AppIBULACIT.Controllers;
 using AppIBULACIT.Models;
-using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,29 +9,47 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace AppIBULACIT.Views
 {
-    public partial class frmTipoPrestamo : System.Web.UI.Page
+    public partial class frmSolicitidTarjeta : System.Web.UI.Page
     {
-        IEnumerable<Tipo_Prestamo> tipo_Prestamos = new ObservableCollection<Tipo_Prestamo>();
-        TipoPrestamoManager tipoprestamoManager = new TipoPrestamoManager();
+        IEnumerable<SolicitidTarjeta> solicitidTarjeta = new ObservableCollection<SolicitidTarjeta>();
+        SolicitudTarjetaManager solicitudTarjetaManager = new SolicitudTarjetaManager();
+
+        IEnumerable<TipoTarjeta> tipoTarjet = new ObservableCollection<TipoTarjeta>();
+        TipoTarjetaManager tipoTarjetaManager = new TipoTarjetaManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!IsPostBack)
+            {
+                InicializarControles();
+            }
         }
+
 
         private async void InicializarControles()
         {
             try
             {
-                tipo_Prestamos = await tipoprestamoManager.ObtenerTiposPrestamos(Session["Token"].ToString());
-                gvTipoPrestamo.DataSource = tipo_Prestamos.ToList();
-                gvTipoPrestamo.DataBind();
+                solicitidTarjeta = await solicitudTarjetaManager.ObtenerSolicitudTarjetas(Session["Token"].ToString());
+                gvSolicitudTarjetas.DataSource = solicitidTarjeta.ToList();
+                gvSolicitudTarjetas.DataBind();
+
+                tipoTarjet = await tipoTarjetaManager.ObtenerTipoTarjetas(Session["Token"].ToString());
+               
+
+            //01 Pruebas DropDown
+            ddlCodigoTipoTarjeta.Items.Clear();
+            foreach (TipoTarjeta tipoTarjeta in tipoTarjet)
+            {
+            ddlCodigoTipoTarjeta.Items.Insert(0, new ListItem(tipoTarjeta.Codigo + " - " + tipoTarjeta.Descripcion, Convert.ToString(tipoTarjeta.Codigo)));           
+            }
+           
             }
             catch (Exception ex)
             {
-                ///Error de usuario
                 ErrorManager errorManager = new ErrorManager();
                 Error error = new Error
                 {
@@ -46,24 +63,27 @@ namespace AppIBULACIT.Views
                 };
 
                 Error errorIngresado = await errorManager.Ingresar(error);
-                lblStatus.Text = "Hubo un error al cargar la lista de servicios.";
+                lblStatus.Text = "Hubo un error al cargar la lista de sucrusales.";
                 lblStatus.Visible = true;
             }
         }
 
-
-        protected void gvTipoPrestamo_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvSolicitudTarjetas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = gvTipoPrestamo.Rows[index];
+            GridViewRow row = gvSolicitudTarjetas.Rows[index];
 
             switch (e.CommandName)
             {
                 case "Modificar":
-                    ltrTituloMantenimiento.Text = "Modificar Ticket";
+                    ltrTituloMantenimiento.Text = "Modificar servicio";
                     btnAceptarMant.ControlStyle.CssClass = "btn btn-primary";
                     txtCodigoMant.Text = row.Cells[0].Text.Trim();
-                    txtDescripcion.Text = row.Cells[1].Text.Trim();
+                    txtCodigoCliente.Text = row.Cells[1].Text.Trim();
+                    txtFechaSolicitud.Text = row.Cells[2].Text.Trim();
+                    ddlCondicionLaboral.Text = row.Cells[3].Text.Trim();
+                    txtIngresoMensual.Text = row.Cells[4].Text.Trim();                
+                    ddlCodigoTipoTarjeta.Text = row.Cells[5].Text.Trim();
 
                     btnAceptarMant.Visible = true;
                     ScriptManager.RegisterStartupScript(this,
@@ -80,24 +100,29 @@ namespace AppIBULACIT.Views
             }
         }
 
+
+
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            ltrTituloMantenimiento.Text = "Nuevo Tipo de Prestamo";
+            ltrTituloMantenimiento.Text = "Nuevo servicio";
             btnAceptarMant.ControlStyle.CssClass = "btn btn-sucess";
-            btnAceptarMant.Visible = true;
+            btnAceptarMant.Visible = true;                      
             ltrCodigoMant.Visible = true;
             txtCodigoMant.Visible = true;
-            txtDescripcion.Visible = true;
-            ltrDescripcion.Visible = true;
+            ltrCodigoCliente.Visible = true;
+            txtCodigoCliente.Visible = true;
+            ltrFechaSolicitud.Visible = true;
+            txtFechaSolicitud.Visible = true;          
+            ddlCondicionLaboral.Enabled = true;
+            ltrIngresoMensual.Visible = true;
+            txtIngresoMensual.Visible = true;   
+            ddlCodigoTipoTarjeta.Enabled = true;
             txtCodigoMant.Text = string.Empty;
-            txtDescripcion.Text = string.Empty;
+            txtCodigoCliente.Text = string.Empty;
+            txtFechaSolicitud.Text  = string.Empty;         
+            txtIngresoMensual.Text = string.Empty;      
             ScriptManager.RegisterStartupScript(this,
                 this.GetType(), "LaunchServerSide", "$(function() {openModalMantenimiento(); } );", true);
-        }
-
-        protected void btnCancelarModal_Click(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { CloseModal(); });", true);
         }
 
         protected async void btnAceptarModal_Click(object sender, EventArgs e)
@@ -105,11 +130,12 @@ namespace AppIBULACIT.Views
             try
             {
                 string resultado = string.Empty;
-                resultado = await tipoprestamoManager.Eliminar(lblCodigoEliminar.Text, Session["Token"].ToString());
+                resultado = await solicitudTarjetaManager.Eliminar(lblCodigoEliminar.Text, Session["Token"].ToString());
+
                 if (!string.IsNullOrEmpty(resultado))
                 {
                     lblCodigoEliminar.Text = string.Empty;
-                    ltrModalMensaje.Text = "Sucursal eliminado";
+                    ltrModalMensaje.Text = "Servicio eliminado";
                     btnAceptarModal.Visible = false;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { openModal(); });", true);
                     InicializarControles();
@@ -117,7 +143,6 @@ namespace AppIBULACIT.Views
             }
             catch (Exception ex)
             {
-
                 ErrorManager errorManager = new ErrorManager();
                 Error error = new Error
                 {
@@ -129,117 +154,154 @@ namespace AppIBULACIT.Views
                     Numero = ex.HResult.ToString(),
                     Descripcion = ex.Message
                 };
-
                 Error errorIngresado = await errorManager.Ingresar(error);
             }
         }
 
-        protected async void btnAceptarMant_Click(object sender, EventArgs e)
+        protected void btnCancelarModal_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCodigoMant.Text))//Insertar
-            {
-                if (ValidarInsertar())
-                {
-                    Tipo_Prestamo tipo_prestamo = new Tipo_Prestamo()
-                    {
-                        Descripcion = txtDescripcion.Text
-                    };
-
-                    Tipo_Prestamo TipoPrestamoIngresado = await tipoprestamoManager.Ingresar(tipo_prestamo, Session["Token"].ToString());
-
-                    if (!string.IsNullOrEmpty(TipoPrestamoIngresado.Descripcion))
-                    {
-                        lblResultado.Text = "Tipo de Prestamo ingresado con exito";
-                        lblResultado.Visible = true;
-                        lblResultado.ForeColor = Color.Green;
-                        btnAceptarMant.Visible = false;
-                        InicializarControles();
-                    }
-                    else
-                    {
-                        lblResultado.Text = "Hubo un error al efectuar la operacion.";
-                        lblResultado.Visible = true;
-                        lblResultado.ForeColor = Color.Maroon;
-                    }
-                }
-            }
-            else //Modificar
-            {
-                if (ValidarModificar())
-                {
-                    Tipo_Prestamo tipo_prestamo = new Tipo_Prestamo()
-                    {
-                        Codigo = Convert.ToInt32(txtCodigoMant.Text),
-                        Descripcion = txtDescripcion.Text
-                    };
-
-                    Tipo_Prestamo TipoPrestamoModificado = await tipoprestamoManager.Actualizar(tipo_prestamo, Session["Token"].ToString());
-
-                    if (!string.IsNullOrEmpty(TipoPrestamoModificado.Descripcion))
-                    {
-                        lblResultado.Text = "Tipo Prestamo actualizado con exito";
-                        lblResultado.Visible = true;
-                        lblResultado.ForeColor = Color.Green;
-                        btnAceptarMant.Visible = false;
-                        InicializarControles();
-                    }
-                    else
-                    {
-                        lblResultado.Text = "Hubo un error al efectuar la operacion.";
-                        lblResultado.Visible = true;
-                        lblResultado.ForeColor = Color.Maroon;
-                    }
-                }
-            }
-         }
-
-
-        private bool ValidarInsertar()
-        {
-
-            if (txtDescripcion.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar una descripcion del prestamo";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-
-            if (txtDescripcion.Text.All(char.IsNumber) == true)
-            {
-                lblStatus.Text = "No solo pueden ingresar numeros";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-
-            return true;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { CloseModal(); });", true);
         }
 
-        private bool ValidarModificar()
-        {
-            if (txtDescripcion.Text.IsNullOrWhiteSpace())
+        protected async void btnAceptarMant_Click(object sender, EventArgs e)
+        {         
+           if (string.IsNullOrEmpty(txtCodigoMant.Text))//Insertar
             {
-                lblStatus.Text = "Debe ingresar una descripcion del prestamo";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
+              if (ValidarInsertar())
+                {
+                    SolicitidTarjeta solicitidTarjeta = new SolicitidTarjeta()               
+                     {
+                        CodigoCliente = Convert.ToInt32(Session["CodigoUsuario"].ToString()),
+                        FechaSolicitud = DateTime.Now,
+                        CondicionLaboral = ddlCondicionLaboral.SelectedValue,                     
+                        IngresoMensual = Convert.ToDecimal(txtIngresoMensual.Text),
+                         CodigoTipoTarjeta = Convert.ToInt32(ddlCodigoTipoTarjeta.SelectedValue)
+                    };
+
+                    SolicitidTarjeta solicitidTarjetaIngresado = await solicitudTarjetaManager.Ingresar(solicitidTarjeta, Session["Token"].ToString());
+                    if (!string.IsNullOrEmpty(solicitidTarjetaIngresado.CondicionLaboral))
+                    {
+                        lblResultado.Text = "Servicio ingresado con exito";
+                        lblResultado.Visible = true;
+                        lblResultado.ForeColor = Color.Green;
+                        btnAceptarMant.Visible = false;
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        lblResultado.Text = "Hubo un error al efectuar la operacion.";
+                        lblResultado.Visible = true;
+                        lblResultado.ForeColor = Color.Maroon;
+                    }
+                }
             }
 
-            if (txtDescripcion.Text.All(char.IsNumber) == true)
-            {
-                lblStatus.Text = "No solo pueden ingresar numeros";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
 
-            return true;
+            else //Modificar
+              {
+                if (ValidarModificar())
+                  {
+                    SolicitidTarjeta solicitidTarjeta = new SolicitidTarjeta()
+                    {
+                        Codigo = Convert.ToInt32(txtCodigoMant.Text),
+                        CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text),
+                        FechaSolicitud = Convert.ToDateTime(txtFechaSolicitud.Text),
+                        CondicionLaboral = ddlCondicionLaboral.SelectedValue,
+                        IngresoMensual = Convert.ToDecimal(txtIngresoMensual.Text),
+                        CodigoTipoTarjeta = Convert.ToInt32(ddlCodigoTipoTarjeta.SelectedValue)
+                    };
+
+                    SolicitidTarjeta solicitidTarjetaIModificado = await solicitudTarjetaManager.Actualizar(solicitidTarjeta, Session["Token"].ToString());
+
+                    if (!string.IsNullOrEmpty(solicitidTarjetaIModificado.CondicionLaboral))
+                    {
+                        lblResultado.Text = "Servicio actualizado con exito";
+                        lblResultado.Visible = true;
+                        lblResultado.ForeColor = Color.Green;
+                        btnAceptarMant.Visible = false;
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        lblResultado.Text = "Hubo un error al efectuar la operacion.";
+                        lblResultado.Visible = true;
+                        lblResultado.ForeColor = Color.Maroon;
+                    }
+                }    
+            }       
         }
 
         protected void btnCancelarMant_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { CloseMantenimiento(); });", true);
         }
+
+        //Validaciones
+        private bool ValidarInsertar()
+        {
+            if (string.IsNullOrEmpty(txtIngresoMensual.Text))
+            {
+                lblStatus.Text = "Debe ingresar su Ingreso Mensual";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+            if (txtIngresoMensual.Text.All(char.IsNumber) == false)
+            {
+                lblStatus.Text = "Fila Ingreso Mensual debe de ser un número";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidarModificar()
+        {
+            if (string.IsNullOrEmpty(txtIngresoMensual.Text))
+            {
+                lblStatus.Text = "Debe ingresar su Ingreso Mensual";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+            return true;
+        }
+
+
+
+
+
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

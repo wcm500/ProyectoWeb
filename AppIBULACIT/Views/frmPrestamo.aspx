@@ -20,12 +20,12 @@
         $(document).ready(function () { //filtrar el datagridview
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#MainContent_gvTipoPrestamo tr").filter(function () {
+                $("#MainContent_gvPrestamo tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
         });
-    </script> 
+     </script> 
     <h1><asp:Label Text="Prestamos" runat="server"></asp:Label></h1>
     <input id="myInput" Placeholder="Buscar" class="form-control" type="text" />
     <asp:GridView ID="gvPrestamo" OnRowCommand="gvPrestamo_RowCommand" runat="server" AutoGenerateColumns="False" 
@@ -33,7 +33,7 @@
         HeaderStyle-ForeColor="White" AlternatingRowStyle-BackColor="LightBlue" Width="100%">
     <Columns>
         <asp:BoundField HeaderText="Codigo" DataField="Codigo"/>
-         <asp:BoundField HeaderText="Fecha Limite" DataField="FechaLimite" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
+         <asp:BoundField HeaderText="Plazos" DataField="Plazos" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundField HeaderText="Fecha Inicio" DataField="FechaInicio" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundField HeaderText="Monto Pago" DataField="MontoPago" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundField HeaderText="Tipo Prestamo" DataField="TipoPrestamo" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
@@ -80,32 +80,46 @@
                   <td><asp:TextBox ID="txtCodigoMant" runat="server" Enabled="false" CssClass="form-control" /></td>
               </tr>
               <tr>
-                  <td><asp:Literal ID="ltrFechaLimite" Text="FechaLimite" runat="server" /></td>
-                  <td><asp:Calendar ID="CldFechaLimite" runat="server" Enabled="false" CssClass="form-control" /></td>
-              </tr>
-               <tr>
-                  <td><asp:Literal ID="ltrFechaInicio" Text="FechaInicio" runat="server" /></td>
+                  <td><asp:Literal ID="ltrFechaInicio" Text="Fecha Incio" runat="server" /></td>
                   <td><asp:TextBox ID="txtFechaInicio" runat="server" Enabled="false" CssClass="form-control" /></td>
+              </tr>
+                <tr>
+                  <td><asp:Literal Text="Plazos" runat="server" /></td>
+                  <td> <asp:DropDownList ID="ddlEstadoMant"  CssClass="form-control" runat="server">
+                    <asp:ListItem Value="4 Meses">4 Meses</asp:ListItem>
+                    <asp:ListItem Value="8 Meses">8 Meses</asp:ListItem>
+                     <asp:ListItem Value="12 Meses">12 Meses</asp:ListItem>
+                    <asp:ListItem Value="16 Meses">16 Meses</asp:ListItem>
+                </asp:DropDownList></td>
               </tr>
                <tr>
                   <td><asp:Literal ID="ltrMontoPago" Text="MontoPago" runat="server" /></td>
-                  <td><asp:TextBox ID="txtMontoPago" runat="server" Enabled="false" CssClass="form-control" /></td>
+                  <td><asp:TextBox ID="txtMontoPago" runat="server"  CssClass="form-control" /></td>
+                   <asp:RegularExpressionValidator ID='RegularExpressionValidator1' ControlToValidate='txtMontoPago' Display='Dynamic' ErrorMessage='El monto pago no se aceptan letras'
+                      ValidationExpression='^[1-9]\d*(,\d+)?$'  ForeColor="Red" runat ='server'></asp:RegularExpressionValidator>
               </tr>
-               <tr>
-                  <td><asp:Literal ID="ltrTipoPrestamo" Text="TipoPrestamo" runat="server" /></td>
-                  <td><asp:TextBox ID="txtTipoPrestamo" runat="server" Enabled="false" CssClass="form-control" /></td>
-              </tr>
-               <tr>
+              <tr>
                   <td><asp:Literal ID="ltrInteres" Text="Interes" runat="server" /></td>
-                  <td><asp:TextBox ID="txtInteres" runat="server" Enabled="false" CssClass="form-control" /></td>
+                  <td><asp:TextBox ID="txtInteres" runat="server"  CssClass="form-control" /></td>
+                  <asp:RegularExpressionValidator ID='vldNumber' ControlToValidate='txtInteres' Display='Dynamic' ErrorMessage='En el interes no se aceptan letras'
+                      ValidationExpression='^[1-9]\d*(,\d+)?$'  ForeColor="Red" runat ='server'></asp:RegularExpressionValidator>
               </tr>
               <tr>
-                  <td><asp:Literal ID="ltrCodigoCuenta" Text="CodigoCuenta" runat="server" /></td>
-                  <td><asp:TextBox ID="txtCodigoCuenta" runat="server" Enabled="false" CssClass="form-control" /></td>
+                  
+                    
+                    <td><asp:Literal ID="ltrTipoPrestamo" Text='Tipo Prestamo' runat="server"/></td>
+                    <td> <asp:DropDownList ID="ddlTipoPrestamo" Text='<%# Eval("Codigo") %>' CssClass="form-control" runat="server" >
+                  </asp:DropDownList></td>           
+              </tr>
+               <tr>
+                   <td><asp:Literal ID="ltrCodigoCuenta" Text='Cuentas' runat="server"/></td>
+                    <td> <asp:DropDownList ID="ddlCuenta" Text='<%# Eval("Codigo") %>' CssClass="form-control" runat="server" >
+                  </asp:DropDownList></td>           
               </tr>
               <tr>
-                  <td><asp:Literal ID="ltrCodigoSucursal" Text="CodigoSucursal" runat="server" /></td>
-                  <td><asp:TextBox ID="txtCodigoSucursal" runat="server" Enabled="false" CssClass="form-control" /></td>
+                   <td><asp:Literal ID="ltrSucursal" Text='Sucursal' runat="server"/></td>
+                    <td> <asp:DropDownList ID="ddlSucursal" Text='<%# Eval("Codigo") %>' CssClass="form-control" runat="server" >
+                  </asp:DropDownList></td>           
               </tr>
           </table>
           <asp:Label ID="lblResultado" ForeColor="Maroon" Visible="False" runat="server" />

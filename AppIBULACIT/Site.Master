@@ -57,6 +57,8 @@
                   <li><a href="/Views/frmSucursal.aspx">Sucursal</a></li>
                   <li><a href="/Views/frmTipoPrestamo.aspx">Tipos de Prestamos</a></li>
                   <li><a href="/Views/frmPrestamo.aspx">Prestamos</a></li>
+                   <li><a href="/Views/frmTipoTarjeta.aspx">Tipos de Tarjeta</a></li>
+                  <li><a href="/Views/frmSolicitidTarjeta.aspx">Solicitud de Tarjeta</a></li>
 
                 </ul>
               </li>

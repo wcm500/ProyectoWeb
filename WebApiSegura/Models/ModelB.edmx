@@ -67,7 +67,7 @@
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FechaLimite" Type="datetime" Nullable="false" />
+          <Property Name="Plazos" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FechaInicio" Type="datetime" Nullable="false" />
           <Property Name="MontoPago" Type="numeric" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TipoPrestamo" Type="int" Nullable="false" />
@@ -121,6 +121,7 @@
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -440,7 +441,7 @@
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FechaLimite" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Plazos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MontoPago" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TipoPrestamo" Type="Int32" Nullable="false" />
@@ -501,6 +502,7 @@
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Prestamos" Relationship="Self.FK_Prestamos_Sucursal" FromRole="Sucursal" ToRole="Prestamos" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -690,7 +692,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
           <EntitySet Name="Errores" EntityType="Self.Errores" />
           <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />
@@ -757,7 +759,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities">
+        <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities1">
           <EntitySetMapping Name="Cuenta">
             <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">
@@ -824,7 +826,7 @@
             <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Prestamos">
               <MappingFragment StoreEntitySet="Prestamos">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
+                <ScalarProperty Name="Plazos" ColumnName="Plazos" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="MontoPago" ColumnName="MontoPago" />
                 <ScalarProperty Name="TipoPrestamo" ColumnName="TipoPrestamo" />
@@ -883,6 +885,7 @@
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

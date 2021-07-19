@@ -10,8 +10,8 @@ using WebApiSegura.Models;
 
 namespace WebApiSegura.Controllers
 {
-    [Authorize]
-    //[AllowAnonymous]
+    //[Authorize]
+    [AllowAnonymous]
     [RoutePrefix("api/Prestamos")]
     public class PrestamosController : ApiController
     {
@@ -38,7 +38,7 @@ namespace WebApiSegura.Controllers
                     {
 
                         prestamos.Codigo = sqlDataReader.GetInt32(0);
-                        prestamos.FechaLimite = sqlDataReader.GetDateTime(1);
+                        prestamos.Plazos = sqlDataReader.GetString(1);
                         prestamos.FechaInicio = sqlDataReader.GetDateTime(2);
                         prestamos.MontoPago = sqlDataReader.GetDecimal(3);
                         prestamos.TipoPrestamo = sqlDataReader.GetInt32(4);
@@ -76,7 +76,7 @@ namespace WebApiSegura.Controllers
                     {
                         Prestamos prestamos = new Prestamos();
                         prestamos.Codigo = sqlDataReader.GetInt32(0);
-                        prestamos.FechaLimite = sqlDataReader.GetDateTime(1);
+                        prestamos.Plazos = sqlDataReader.GetString(1);
                         prestamos.FechaInicio = sqlDataReader.GetDateTime(2);
                         prestamos.MontoPago = sqlDataReader.GetDecimal(3);
                         prestamos.TipoPrestamo = sqlDataReader.GetInt32(4);
@@ -106,11 +106,11 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"INSERT INTO Prestamos (FechaLimite, FechaInicio, MontoPago, TipoPrestamo, Interes, CodigoCuenta, CodigoSucursal )
-                                                                            VALUES (@FechaLimite, @FechaInicio, @MontoPago, @TipoPrestamo, @Interes , @CodigoCuenta , @CodigoSucursal) ", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand(@"INSERT INTO Prestamos (Plazos, FechaInicio, MontoPago, TipoPrestamo, Interes, CodigoCuenta, CodigoSucursal )
+                                                                            VALUES (@Plazos, @FechaInicio, @MontoPago, @TipoPrestamo, @Interes , @CodigoCuenta , @CodigoSucursal) ", sqlConnection);
 
                   
-                    sqlCommand.Parameters.AddWithValue("@FechaLimite", prestamos.FechaLimite);
+                    sqlCommand.Parameters.AddWithValue("@Plazos", prestamos.Plazos);
                     sqlCommand.Parameters.AddWithValue("@FechaInicio", prestamos.FechaInicio);
                     sqlCommand.Parameters.AddWithValue("@MontoPago", prestamos.MontoPago);
                     sqlCommand.Parameters.AddWithValue("@TipoPrestamo", prestamos.TipoPrestamo);
@@ -145,7 +145,8 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"UPDATE Prestamos SET FechaLimite = @FechaLimite,
+                    SqlCommand sqlCommand = new SqlCommand(@"UPDATE Prestamos SET 
+                                                                             Plazos = @Plazos,
                                                                              FechaInicio = @FechaInicio,
                                                                              MontoPago = @MontoPago,
                                                                              TipoPrestamo=@TipoPrestamo,
@@ -154,8 +155,8 @@ namespace WebApiSegura.Controllers
                                                                              CodigoSucursal = @CodigoSucursal
                                                                             WHERE Codigo = @Codigo ", sqlConnection);
 
-                    sqlCommand.Parameters.AddWithValue("@Codigo", prestamos.FechaLimite);
-                    sqlCommand.Parameters.AddWithValue("@FechaLimite", prestamos.FechaLimite);
+                    sqlCommand.Parameters.AddWithValue("@Codigo", prestamos.Codigo);
+                    sqlCommand.Parameters.AddWithValue("@Plazos", prestamos.Plazos);
                     sqlCommand.Parameters.AddWithValue("@FechaInicio", prestamos.FechaInicio);
                     sqlCommand.Parameters.AddWithValue("@MontoPago", prestamos.MontoPago);
                     sqlCommand.Parameters.AddWithValue("@TipoPrestamo", prestamos.TipoPrestamo);

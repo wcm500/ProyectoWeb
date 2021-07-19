@@ -261,6 +261,7 @@
     <Content Include="Views\frmPrestamo.aspx" />
     <Content Include="Views\frmServicio.aspx" />
     <Content Include="Views\frmServicioCliente.aspx" />
+    <Content Include="Views\frmSolicitidTarjeta.aspx" />
     <Content Include="Views\frmSucursal.aspx" />
     <Content Include="Views\frmTipoPrestamo.aspx" />
     <Content Include="Views\frmTipoTarjeta.aspx" />
@@ -291,13 +292,14 @@
     <Compile Include="Controllers\ErrorManager.cs" />
     <Compile Include="Controllers\EstadisticaManager.cs" />
     <Compile Include="Controllers\MonedaManager.cs" />
-    <Compile Include="Controllers\Prestamo.cs" />
     <Compile Include="Controllers\PrestamoManager.cs" />
     <Compile Include="Controllers\ServicioClienteManager.cs" />
     <Compile Include="Controllers\ServicioManager.cs" />
     <Compile Include="Controllers\SesionManager.cs" />
+    <Compile Include="Controllers\SolicitudTarjetaManager.cs" />
     <Compile Include="Controllers\SucursalManager.cs" />
     <Compile Include="Controllers\TipoPrestamoManager.cs" />
+    <Compile Include="Controllers\TipoTarjetaManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
     <Compile Include="CustomErrors\frmError.aspx.cs">
       <DependentUpon>frmError.aspx</DependentUpon>
@@ -333,7 +335,9 @@
     <Compile Include="Models\Servicio.cs" />
     <Compile Include="Models\ServicioCliente.cs" />
     <Compile Include="Models\Sesion.cs" />
+    <Compile Include="Models\SolicitidTarjeta.cs" />
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\TipoTarjeta.cs" />
     <Compile Include="Models\Tipo_Prestamo.cs" />
     <Compile Include="Models\Transferencia.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -400,6 +404,13 @@
     </Compile>
     <Compile Include="Views\frmServicioCliente.aspx.designer.cs">
       <DependentUpon>frmServicioCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmSolicitidTarjeta.aspx.cs">
+      <DependentUpon>frmSolicitidTarjeta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\frmSolicitidTarjeta.aspx.designer.cs">
+      <DependentUpon>frmSolicitidTarjeta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\frmSucursal.aspx.cs">
       <DependentUpon>frmSucursal.aspx</DependentUpon>

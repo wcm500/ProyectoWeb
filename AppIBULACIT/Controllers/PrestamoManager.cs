@@ -12,7 +12,7 @@ namespace AppIBULACIT.Controllers
 {
     public class PrestamoManager
     {
-        string UrlBase = "http://localhost:49220/api/Prestamo/";
+        string UrlBase = "http://localhost:49220/api/Prestamos/";
 
         HttpClient GetClient(string token)
         {
@@ -24,25 +24,25 @@ namespace AppIBULACIT.Controllers
             return httpClient;
         }
 
-        public async Task<Prestamo> ObtenerPrestamo(string token, string codigo)
+        public async Task<Prestamos> ObtenerPrestamo(string token, string codigo)
         {
             HttpClient httpClient = GetClient(token);
 
             var response = await httpClient.GetStringAsync(string.Concat(UrlBase, codigo));
 
-            return JsonConvert.DeserializeObject<Prestamo>(response);
+            return JsonConvert.DeserializeObject<Prestamos>(response);
         }
 
-        public async Task<IEnumerable<Prestamo>> ObtenerPrestamos(string token)
+        public async Task<IEnumerable<Prestamos>> ObtenerPrestamos(string token)
         {
             HttpClient httpClient = GetClient(token);
 
             var response = await httpClient.GetStringAsync(UrlBase);
 
-            return JsonConvert.DeserializeObject<IEnumerable<Prestamo>>(response);
+            return JsonConvert.DeserializeObject<IEnumerable<Prestamos>>(response);
         }
 
-        public async Task<Prestamo> Ingresar(Prestamo prestamo, string token)
+        public async Task<Prestamos> Ingresar(Prestamos prestamo, string token)
         {
             HttpClient httpClient = GetClient(token);
 
@@ -51,11 +51,11 @@ namespace AppIBULACIT.Controllers
                 Encoding.UTF8,
                 "application/json"));
 
-            return JsonConvert.DeserializeObject<Prestamo>(await
+            return JsonConvert.DeserializeObject<Prestamos>(await
                 response.Content.ReadAsStringAsync());
         }
 
-        public async Task<Prestamo> Actualizar(Prestamo prestamo, string token)
+        public async Task<Prestamos> Actualizar(Prestamos prestamo, string token)
         {
             HttpClient httpClient = GetClient(token);
 
@@ -64,7 +64,7 @@ namespace AppIBULACIT.Controllers
                 Encoding.UTF8,
                 "application/json"));
 
-            return JsonConvert.DeserializeObject<Prestamo>(await response.
+            return JsonConvert.DeserializeObject<Prestamos>(await response.
                 Content.ReadAsStringAsync());
         }
 

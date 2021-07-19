@@ -15,7 +15,7 @@ namespace WebApiSegura.Models
     public partial class Prestamos
     {
         public int Codigo { get; set; }
-        public System.DateTime FechaLimite { get; set; }
+        public string Plazos { get; set; }
         public System.DateTime FechaInicio { get; set; }
         public decimal MontoPago { get; set; }
         public int TipoPrestamo { get; set; }
