@@ -104,7 +104,7 @@ namespace AppIBULACIT.Views
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            ltrTituloMantenimiento.Text = "Nuevo servicio";
+            ltrTituloMantenimiento.Text = "Solictiar Tarjeta";
             btnAceptarMant.ControlStyle.CssClass = "btn btn-sucess";
             btnAceptarMant.Visible = true;                      
             ltrCodigoMant.Visible = true;
@@ -215,7 +215,7 @@ namespace AppIBULACIT.Views
 
                     if (!string.IsNullOrEmpty(solicitidTarjetaIModificado.CondicionLaboral))
                     {
-                        lblResultado.Text = "Servicio actualizado con exito";
+                        lblResultado.Text = "Actualizado con exito";
                         lblResultado.Visible = true;
                         lblResultado.ForeColor = Color.Green;
                         btnAceptarMant.Visible = false;
@@ -248,11 +248,16 @@ namespace AppIBULACIT.Views
             }
             if (txtIngresoMensual.Text.All(char.IsNumber) == false)
             {
-                lblStatus.Text = "Fila Ingreso Mensual debe de ser un número";
+                lblStatus.Text = "Ingreso Mensual debe de ser un número";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;
             }
+
+
+            lblStatus.Text = "Insertado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 
@@ -265,7 +270,11 @@ namespace AppIBULACIT.Views
                 lblStatus.Visible = true;
                 return false;
             }
+            lblStatus.Text = "Modificado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
+
         }
 
 

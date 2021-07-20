@@ -85,16 +85,16 @@
                   <td><asp:TextBox ID="txtCodigoMant" runat="server" Enabled="false" CssClass="form-control" /></td>
               </tr>
               <tr>
-                  <td><asp:Literal ID="ltrCodigoCliente" Text="CodigoCliente" runat="server" /></td>
+                  <td><asp:Literal ID="ltrCodigoCliente" Text="Codigo Cliente" runat="server" /></td>
                   <td><asp:TextBox ID="txtCodigoCliente" runat="server" Enabled="false" CssClass="form-control" /></td>      
               </tr>
               <tr>
-                 <td><asp:Literal ID="ltrFechaSolicitud" Text="FechaSolicitud" runat="server" /></td>
+                 <td><asp:Literal ID="ltrFechaSolicitud" Text="Fecha Solicitud" runat="server" /></td>
                  <td><asp:TextBox ID="txtFechaSolicitud" runat="server" Enabled="false" CssClass="form-control" /></td>
               </tr>
               
               <tr>    
-                  <td><asp:Literal Text="CondicionLaboral" runat="server"  /></td>
+                  <td><asp:Literal Text="Condicion Laboral" runat="server"  /></td>
                   <td> <asp:DropDownList ID="ddlCondicionLaboral"  CssClass="form-control" runat="server">
                     <asp:ListItem Value="Empleado">Empleado</asp:ListItem>
                     <asp:ListItem Value="Desempleado">Desempleado</asp:ListItem>
@@ -102,7 +102,7 @@
               </tr>
 
                <tr>
-                  <td><asp:Literal ID="ltrIngresoMensual" Text="IngresoMensual" runat="server" /></td>
+                  <td><asp:Literal ID="ltrIngresoMensual" Text="Ingreso Mensual" runat="server" /></td>
                   <td><asp:TextBox ID="txtIngresoMensual" runat="server" CssClass="form-control" /></td>
                   <asp:RegularExpressionValidator ID='vldNumber' ControlToValidate='txtIngresoMensual' Display='Dynamic' ErrorMessage='En el ingreso mensual no se aceptan letras'
                       ValidationExpression='^[1-9]\d*(,\d+)?$'  ForeColor="Red" runat ='server'>
@@ -117,7 +117,7 @@
                     <td> <asp:DropDownList ID="ddlCodigoTipoTarjeta" CssClass="form-control" runat="server" >
                   </asp:DropDownList></td>
                   </EditItemTemplate>  --%>              
-                   <td><asp:Literal Text="IngresoMensual" runat="server"  /></td>
+                   <td><asp:Literal Text="Codigo Tarjeta" runat="server"  /></td>
                   <td> <asp:DropDownList ID="ddlCodigoTipoTarjeta" CssClass="form-control" Text='<%# Eval("Codigo") %>' runat="server">
                   </asp:DropDownList></td>
 

@@ -61,8 +61,9 @@ namespace AppIBULACIT.Views
                     ltrTituloMantenimiento.Text = "Modificar Sucursal";
                     btnAceptarMant.ControlStyle.CssClass = "btn btn-primary";
                     txtCodigoMant.Text = row.Cells[0].Text.Trim();
-                    txtNombre.Text = row.Cells[1].Text.Trim();
-                    txtUbicacion.Text = row.Cells[2].Text.Trim();
+                    txtNombre.Text = row.Cells[2].Text.Trim();
+                    txtUbicacion.Text = row.Cells[1].Text.Trim();
+                    ddlEstadoMant.SelectedValue = row.Cells[3].Text.Trim();
                     btnAceptarMant.Visible = true;
                     ScriptManager.RegisterStartupScript(this,
                 this.GetType(), "LaunchServerSide", "$(function() {openModalMantenimiento(); } );", true);
@@ -89,6 +90,10 @@ namespace AppIBULACIT.Views
             txtNombre.Visible = true;
             ddlEstadoMant.Enabled = true;
             txtCodigoMant.Text = string.Empty;
+            ltrUbicacion.Visible = true;
+            txtUbicacion.Visible = true;
+            txtNombre.Text = string.Empty;
+            //ltrUbicacion.Text = string.Empty;
             txtUbicacion.Text = string.Empty;
             ScriptManager.RegisterStartupScript(this,
                 this.GetType(), "LaunchServerSide", "$(function() {openModalMantenimiento(); } );", true);
@@ -154,7 +159,7 @@ namespace AppIBULACIT.Views
                     /*Validar*/
                     if (!string.IsNullOrEmpty(sucursalIngresada.Nombre))
                     {
-                        lblResultado.Text = "Sucursal ingresada con exito";
+                        lblResultado.Text = "ingresada con exito";
                         lblResultado.Visible = true;
                         lblResultado.ForeColor = Color.Green;
                         btnAceptarMant.Visible = false;
@@ -185,7 +190,7 @@ namespace AppIBULACIT.Views
 
                     if (!string.IsNullOrEmpty(sucursalModificado.Nombre))
                     {
-                        lblResultado.Text = "Servicio actualizado con exito";
+                        lblResultado.Text = "actualizado con exito";
                         lblResultado.Visible = true;
                         lblResultado.ForeColor = Color.Green;
                         btnAceptarMant.Visible = false;
@@ -235,7 +240,9 @@ namespace AppIBULACIT.Views
                 lblStatus.Visible = true;
                 return false;
             }
-
+            lblStatus.Text = "Insertado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 
@@ -258,22 +265,24 @@ namespace AppIBULACIT.Views
                 return false;
             }
 
-            if (txtNombre.Text.All(char.IsLetter) == false)
+            if (txtNombre.Text.All(char.IsNumber) == true)
             {
-                lblStatus.Text = "Fila capacidad debe de ser un número";
+                lblStatus.Text = "Nombre  no debe ser un número";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;
             }
 
-            if (txtUbicacion.Text.All(char.IsLetter) == false)
+            if (txtUbicacion.Text.All(char.IsNumber) == true)
             {
-                lblStatus.Text = "Fila precio debe de ser un número";
+                lblStatus.Text = "La Ubicacion no debe de ser un número";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;
             }
-
+            lblStatus.Text = "Modificado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 

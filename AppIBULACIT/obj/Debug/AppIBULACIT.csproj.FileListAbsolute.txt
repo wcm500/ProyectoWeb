@@ -359,7 +359,6 @@ C:\Users\orlan\Documents\GitHub\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.cs
 C:\Users\orlan\Documents\GitHub\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.dll
 C:\Users\orlan\Documents\GitHub\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.pdb
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.App.config
-D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csprojAssemblyReference.cache
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.CoreCompileInputs.cache
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\AppIBULACIT.dll.config
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\AppIBULACIT.dll

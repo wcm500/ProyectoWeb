@@ -37,8 +37,8 @@
         HeaderStyle-ForeColor="White" AlternatingRowStyle-BackColor="LightBlue" Width="100%">
         <Columns>
             <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
-            <asp:BoundField HeaderText="Ubicacion" DataField="Ubicacion" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
-            <asp:BoundField HeaderText="Nombre" DataField="Nombre" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
+             <asp:BoundField HeaderText="Ubicacion" DataField="Nombre" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
+             <asp:BoundField HeaderText="Nombre" DataField="Ubicacion" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
             <asp:BoundField HeaderText="Estado" DataField="Estado" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
             <asp:ButtonField HeaderText="Modificar" CommandName="Modificar" ControlStyle-CssClass="btn btn-primary" ButtonType="Button" Text="Modificar" />
             <asp:ButtonField HeaderText="Eliminar" CommandName="Eliminar" ControlStyle-CssClass="btn btn-danger" ButtonType="Button" Text="Eliminar" />
@@ -81,17 +81,17 @@
                   <td><asp:Literal ID="ltrCodigoMant" Text="Codigo" runat="server" /></td>
                   <td><asp:TextBox ID="txtCodigoMant" runat="server" Enabled="false" CssClass="form-control"/></td>
               </tr>
-              <tr>
-                  <td><asp:Literal ID="ltrNombre" Text="Nombre" runat="server" /></td>
+                <tr>
+                  <td><asp:Literal ID="ltrNombre" Text="Nombre" runat="server"/></td>
                   <td><asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" /></td>
               </tr>
-               <tr>
-                  <td><asp:Literal ID="ltrUbicacion" Text="Ubicacion" runat="server" /></td>
+                <tr>
+                  <td><asp:Literal ID="ltrUbicacion" Text="Ubicacion" runat="server"/></td>
                   <td><asp:TextBox ID="txtUbicacion" runat="server" CssClass="form-control"/></td>
               </tr>
               <tr>
-                  <td><asp:Literal Text="Estado" runat="server" /></td>
-                  <td> <asp:DropDownList ID="ddlEstadoMant"  CssClass="form-control" runat="server">
+                  <td><asp:Literal Text="Estado" runat="server"/></td>
+                  <td> <asp:DropDownList ID="ddlEstadoMant" CssClass="form-control" runat="server">
                     <asp:ListItem Value="A">Activo</asp:ListItem>
                     <asp:ListItem Value="I">Inactivo</asp:ListItem>
                 </asp:DropDownList></td>

@@ -158,6 +158,9 @@ namespace AppIBULACIT.Views
                 return false;
             }
 
+            lblStatus.Text = "Insertado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 
@@ -180,6 +183,9 @@ namespace AppIBULACIT.Views
                 return false;
             }
 
+            lblStatus.Text = "Modificado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 

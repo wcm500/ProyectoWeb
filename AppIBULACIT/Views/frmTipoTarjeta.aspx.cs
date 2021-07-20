@@ -80,7 +80,7 @@ namespace AppIBULACIT.Views
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            ltrTituloMantenimiento.Text = "Nuevo servicio";
+            ltrTituloMantenimiento.Text = "Tipo Tarjeta";
             btnAceptarMant.ControlStyle.CssClass = "btn btn-sucess";
             btnAceptarMant.Visible = true;
             ltrCodigoMant.Visible = true;
@@ -108,7 +108,7 @@ namespace AppIBULACIT.Views
                     TipoTarjeta tipoTarjetaIngresado = await tipoTarjetaManager.Ingresar(tipoTarjeta, Session["Token"].ToString());
                     if (!string.IsNullOrEmpty(tipoTarjetaIngresado.Descripcion))
                     {
-                        lblResultado.Text = "Servicio ingresado con exito";
+                        lblResultado.Text = "ingresado con exito";
                         lblResultado.Visible = true;
                         lblResultado.ForeColor = Color.Green;
                         btnAceptarMant.Visible = false;
@@ -136,7 +136,7 @@ namespace AppIBULACIT.Views
 
                     if (!string.IsNullOrEmpty(tipoTarjetaModificado.Descripcion))
                     {
-                        lblResultado.Text = "Servicio actualizado con exito";
+                        lblResultado.Text = "actualizado con exito";
                         lblResultado.Visible = true;
                         lblResultado.ForeColor = Color.Green;
                         btnAceptarMant.Visible = false;
@@ -160,7 +160,7 @@ namespace AppIBULACIT.Views
                     if (!string.IsNullOrEmpty(resultado))
                     {
                         lblCodigoEliminar.Text = string.Empty;
-                        ltrModalMensaje.Text = "Servicio eliminado";
+                        ltrModalMensaje.Text = " eliminado";
                         btnAceptarModal.Visible = false;
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { openModal(); });", true);
                         InicializarControles();
@@ -205,6 +205,16 @@ namespace AppIBULACIT.Views
                 lblStatus.Visible = true;
                 return false;
             }
+            if (txtDescripcion.Text.All(char.IsNumber) == true)
+            {
+                lblStatus.Text = "No solo pueden ingresar numeros";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+            lblStatus.Text = "Insertado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 
@@ -217,6 +227,16 @@ namespace AppIBULACIT.Views
                 lblStatus.Visible = true;
                 return false;
             }
+            if (txtDescripcion.Text.All(char.IsNumber) == true)
+            {
+                lblStatus.Text = "No solo pueden ingresar numeros";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+            lblStatus.Text = "Modificado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 

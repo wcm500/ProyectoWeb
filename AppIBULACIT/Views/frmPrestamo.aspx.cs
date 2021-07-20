@@ -60,7 +60,7 @@ namespace AppIBULACIT.Views
                 ddlSucursal.Items.Clear();
                 foreach (Sucursal sucursal in sucursals)
                 {
-                    ddlSucursal.Items.Insert(0, new ListItem(sucursal.Codigo + " - " + sucursal.Nombre, Convert.ToString(sucursal.Codigo)));
+                    ddlSucursal.Items.Insert(0, new ListItem(sucursal.Codigo + " - " + sucursal.Ubicacion, Convert.ToString(sucursal.Codigo)));
                 }
 
                 ddlCuenta.Items.Clear();
@@ -283,22 +283,25 @@ namespace AppIBULACIT.Views
                 return false;
             }
 
-            if (txtMontoPago.Text.All(char.IsNumber) == false)
-            {
-                lblStatus.Text = "Fila capacidad debe de ser un número";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+            //if (txtMontoPago.Text.All(char.IsNumber) == false)
+            //{
+            //    lblStatus.Text = "Fila capacidad debe de ser un número";
+            //    lblStatus.ForeColor = Color.Maroon;
+            //    lblStatus.Visible = true;
+            //    return false;
+            //}
 
-            if (txtInteres.Text.All(char.IsNumber) == false)
-            {
-                lblStatus.Text = "Fila precio debe de ser un número";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+            //if (txtInteres.Text.All(char.IsNumber) == false)
+            //{
+            //    lblStatus.Text = "Fila precio debe de ser un número";
+            //    lblStatus.ForeColor = Color.Maroon;
+            //    lblStatus.Visible = true;
+            //    return false;
+            //}
 
+            lblStatus.Text = "Insertado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
         }
 
@@ -321,25 +324,28 @@ namespace AppIBULACIT.Views
                 return false;
             }
 
-            if (txtMontoPago.Text.All(char.IsLetter) == true)
-            {
-                lblStatus.Text = "El monto debe de ser un número";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+            //if (txtMontoPago.Text.All(char.IsLetter) == true)
+            //{
+            //    lblStatus.Text = "El monto debe de ser un número";
+            //    lblStatus.ForeColor = Color.Maroon;
+            //    lblStatus.Visible = true;
+            //    return false;
+            //}
 
-            if (txtInteres.Text.All(char.IsLetter) == true)
-            {
-                lblStatus.Text = "El interes debe de ser un número";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+            //if (txtInteres.Text.All(char.IsLetter) == true)
+            //{
+            //    lblStatus.Text = "El interes debe de ser un número";
+            //    lblStatus.ForeColor = Color.Maroon;
+            //    lblStatus.Visible = true;
+            //    return false;
+            //}
 
 
-            
 
+
+            lblStatus.Text = "Modificado Correctamente";
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Visible = true;
             return true;
 
         }
