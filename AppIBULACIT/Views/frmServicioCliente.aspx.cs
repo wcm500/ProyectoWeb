@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,17 +18,64 @@ namespace AppIBULACIT.Views
         IEnumerable<ServicioCliente> servicioCliente = new ObservableCollection<ServicioCliente>();
         ServicioClienteManager servicioClienteManager = new ServicioClienteManager();
 
-        protected void Page_Load(object sender, EventArgs e)
+        public string labelsGraficoVistasGlobal = string.Empty;
+        public string dataGraficoVistasGlobal = string.Empty;
+        public string backgroundcolorsGraficoVistasGlobal = string.Empty;
+
+        async protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!IsPostBack)
+            {
+                if (Session["CodigoUsuario"] == null)
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
+                else {
+                    servicioCliente = await servicioClienteManager.ObtenerServicios(Session["Token"].ToString());
+                    InicializarControles(); 
+                    ObtenerDatosGrafico(); 
+                }
+            }
+
         }
+
+
+        private void ObtenerDatosGrafico()
+        {
+
+            StringBuilder script = new StringBuilder();
+            StringBuilder labelsGraficoVistas = new StringBuilder();
+            StringBuilder dataGraficoVistas = new StringBuilder();
+            StringBuilder backgroundcolorsGraficoVistas = new StringBuilder();
+
+            var random = new Random();
+
+            foreach (var servicio in servicioCliente.GroupBy(info => info.TipoAyuda).
+                Select(group => new {
+                    TipoAyuda = group.Key,
+                    Cantidad = group.Count()
+                }).OrderBy(x => x.TipoAyuda))
+            {
+                string color = String.Format("#{0:X6}", random.Next(0x1000000));
+                labelsGraficoVistas.Append(string.Format("'{0}',", servicio.TipoAyuda)); // 'Correo','frmError',
+                dataGraficoVistas.Append(string.Format("'{0}',", servicio.Cantidad)); // '2','3',
+                backgroundcolorsGraficoVistas.Append(string.Format("'{0}',", color));
+
+                labelsGraficoVistasGlobal = labelsGraficoVistas.ToString().Substring(0, labelsGraficoVistas.Length - 1);
+                dataGraficoVistasGlobal = dataGraficoVistas.ToString().Substring(0, dataGraficoVistas.Length - 1);
+                backgroundcolorsGraficoVistasGlobal =
+                    backgroundcolorsGraficoVistas.ToString().Substring(backgroundcolorsGraficoVistas.Length - 1);
+            }
+
+        }
+
 
         private async void InicializarControles()
         {
 
             try
             {
-                servicioCliente = await servicioClienteManager.ObtenerServicios(Session["Token"].ToString());
+                //servicioCliente = await servicioClienteManager.ObtenerServicios(Session["Token"].ToString());
                 gvServicioCliente.DataSource = servicioCliente.ToList();
                 gvServicioCliente.DataBind();
             }
@@ -122,7 +170,7 @@ namespace AppIBULACIT.Views
 
                     if (!string.IsNullOrEmpty(servicioClienteModificado.Descripcion))
                     {
-                        lblResultado.Text = "Servicio actualizado con exito";
+                        lblResultado.Text = "actualizado con exito";
                         lblResultado.Visible = true;
                         lblResultado.ForeColor = Color.Green;
                         btnAceptarMant.Visible = false;
@@ -203,7 +251,7 @@ namespace AppIBULACIT.Views
                 if (!string.IsNullOrEmpty(resultado))
                 {
                     lblCodigoEliminar.Text = string.Empty;
-                    ltrModalMensaje.Text = "Sucursal eliminado";
+                    ltrModalMensaje.Text = "eliminado";
                     btnAceptarModal.Visible = false;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { openModal(); });", true);
                     InicializarControles();

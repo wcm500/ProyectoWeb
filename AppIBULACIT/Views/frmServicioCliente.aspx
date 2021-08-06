@@ -27,7 +27,7 @@
             });
         });
     </script> 
-    <h1><asp:Label Text="Mantenimiento de servicios" runat="server"></asp:Label></h1>
+    <h1><asp:Label Text="Mantenimiento de servicio cliente" runat="server"></asp:Label></h1>
     <input id="myInput" Placeholder="Buscar" class="form-control" type="text" />
     <asp:GridView ID="gvServicioCliente" OnRowCommand="gvServicioCliente_RowCommand" runat="server" AutoGenerateColumns="False" 
         CssClass="table table-sm" HeaderStyle-CssClass="thead-dark" HeaderStyle-BackColor="#243054"
@@ -44,8 +44,7 @@
     </asp:GridView>
     <asp:LinkButton type="button" OnClick="btnNuevo_Click" CssClass="btn btn-success" ID="btnNuevo"  runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-floppy-disk'></span> Nuevo" />
     <br />
-    <asp:Label ID="lblStatus" ForeColor="Maroon" runat="server" Visible="false" />
-    <!-- VENTANA MODAL -->
+    <asp:Label ID="lblStatus" ForeColor="Maroon" runat="server" Visible="false" />ENTANA MODAL -->
   <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -103,7 +102,6 @@
               </tr>
           </table>
           <asp:Label ID="lblResultado" ForeColor="Maroon" Visible="False" runat="server" />
-      </div>
       <div class="modal-footer">
         <asp:LinkButton type="button" CssClass="btn btn-success" ID="btnAceptarMant" OnClick="btnAceptarMant_Click"  runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-ok'></span> Aceptar" />
          <asp:LinkButton type="button"  CssClass="btn btn-danger" ID="btnCancelarMant" OnClick="btnCancelarMant_Click" runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-remove'></span> Cerrar" />
