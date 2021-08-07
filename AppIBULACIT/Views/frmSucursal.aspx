@@ -13,6 +13,7 @@
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
     <script type="text/javascript">
 
@@ -23,10 +24,10 @@
                 'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [0] }],
                 'iDisplayLength': 5,
                 buttons: [
-                    { extend: 'copy', text: 'Copy to clipboard', className: 'exportExcel', exportOptions: { modifier: { page: 'all' } } },
-                    { extend: 'excel', text: 'Export to Excel', className: 'exportExcel', filename: 'Errores_Excel', exportOptions: { modifier: { page: 'all' } } },
-                    { extend: 'csv', text: 'Export to CSV', className: 'exportExcel', filename: 'Errores_Csv', exportOptions: { modifier: { page: 'all' } } },
-                    { extend: 'pdf', text: 'Export to PDF', className: 'exportExcel', filename: 'Errores_Pdf', orientation: 'landscape', pageSize: 'LEGAL', exportOptions: { modifier: { page: 'all' }, columns: ':visible' } }
+                    { extend: 'copy', text: 'Copiar Teclado', className: 'exportExcel', exportOptions: { modifier: { page: 'all' } } },
+                    { extend: 'excel', text: 'Exportar a Excel', className: 'exportExcel', filename: 'Sucursal_Excel', exportOptions: { modifier: { page: 'all' } } },
+                    { extend: 'csv', text: 'Exportar a  CSV', className: 'exportExcel', filename: 'Sucursal_Csv', exportOptions: { modifier: { page: 'all' } } },
+                    { extend: 'pdf', text: 'Exportar a  PDF', className: 'exportExcel', filename: 'Sucursal_Pdf', orientation: 'landscape', pageSize: 'LEGAL', exportOptions: { modifier: { page: 'all' }, columns: ':visible' } }
                 ]
             });
         });
@@ -68,6 +69,32 @@
     </asp:GridView>
     <asp:LinkButton type="button" ID="btnNuevo" OnClick="btnNuevo_Click" runat="server" Text="<span aria-hidden='true' class='glyphicon glyphicon-floppy-disk'></span> Nuevo" ></asp:LinkButton>
     <br />
+    <div class="row">
+            <div class="col-sm">
+     <div id="canvas-holder" style="width:40%">
+		            <canvas id="vistas-chart"></canvas>
+	            </div>
+              <script >
+                  new Chart(document.getElementById("vistas-chart"), {
+                      type: 'polarArea',
+                      data: {
+                          labels: [<%= this.labelsGraficoVistasGlobal %>],
+                          datasets: [{
+                              label: "Tickets por tipo ayuda",
+                              backgroundColor: [<%= this.backgroundcolorsGraficoVistasGlobal %>],
+                        data: [<%= this.dataGraficoVistasGlobal %>]
+                          }]
+                      },
+                      options: {
+                          title: {
+                              display: true,
+                              text: 'Tickets por tipo ayuda'
+                          }
+                      }
+                  });
+              </script>
+                </div>
+            </div>
     <asp:Label ID="lblStatus" ForeColor="Maroon" runat="server" Visible="false"></asp:Label>
 
     <!-- VENTANA MODAL -->

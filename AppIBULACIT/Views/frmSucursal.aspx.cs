@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,18 +18,35 @@ namespace AppIBULACIT.Views
         IEnumerable<Sucursal> sucursals = new ObservableCollection<Sucursal>();
         SucursalManager sucursalManager = new SucursalManager();
 
-        protected void Page_Load(object sender, EventArgs e)
+        public string labelsGraficoVistasGlobal = string.Empty;
+        public string dataGraficoVistasGlobal = string.Empty;
+        public string backgroundcolorsGraficoVistasGlobal = string.Empty;
+
+        async protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!IsPostBack)
+            {
+                if (Session["CodigoUsuario"] == null)
+                    Response.Redirect("~/Login.aspx");
+                else
+                {
+                    sucursals = await sucursalManager.ObtenerServicios(Session["Token"].ToString());
+                    
+                    InicializarControles();
+                    
+
+                }
+
+            }
         }
 
         private async void InicializarControles()
         {
             try
             {
-                sucursals = await sucursalManager.ObtenerServicios(Session["Token"].ToString());
                 gvSurcursales.DataSource = sucursals.ToList();
                 gvSurcursales.DataBind();
+                ObtenerDatosGrafico();
             }
             catch (Exception ex)
             {
@@ -48,6 +66,34 @@ namespace AppIBULACIT.Views
                 lblStatus.Text = "Hubo un error al cargar la lista de sucrusales.";
                 lblStatus.Visible = true;
             }
+        }
+
+        private void ObtenerDatosGrafico()
+        {
+            StringBuilder script = new StringBuilder();
+            StringBuilder labelsGraficoVistas = new StringBuilder();
+            StringBuilder dataGraficoVistas = new StringBuilder();
+            StringBuilder backgroundcolorsGraficoVistas = new StringBuilder();
+
+            var random = new Random();
+
+            foreach (var sucursals in sucursals.GroupBy(info => info.Ubicacion).
+                Select(group => new {
+                    Ubicacion = group.Key,
+                    Cantidad = group.Count()
+                }).OrderBy(x => x.Ubicacion))
+            {
+                string color = String.Format("#{0:X6}", random.Next(0x1000000));
+                labelsGraficoVistas.Append(string.Format("'{0}',", sucursals.Ubicacion)); // 'Correo','frmError',
+                dataGraficoVistas.Append(string.Format("'{0}',", sucursals.Cantidad)); // '2','3',
+                backgroundcolorsGraficoVistas.Append(string.Format("'{0}',", color));
+
+                labelsGraficoVistasGlobal = labelsGraficoVistas.ToString().Substring(0, labelsGraficoVistas.Length - 1);
+                dataGraficoVistasGlobal = dataGraficoVistas.ToString().Substring(0, dataGraficoVistas.Length - 1);
+                backgroundcolorsGraficoVistasGlobal =
+                    backgroundcolorsGraficoVistas.ToString().Substring(backgroundcolorsGraficoVistas.Length - 1);
+            }
+
         }
 
         protected void gvSurcursales_RowCommand(object sender, GridViewCommandEventArgs e)

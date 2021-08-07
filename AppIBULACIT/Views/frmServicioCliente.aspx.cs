@@ -27,9 +27,7 @@ namespace AppIBULACIT.Views
             if (!IsPostBack)
             {
                 if (Session["CodigoUsuario"] == null)
-                {
                     Response.Redirect("~/Login.aspx");
-                }
                 else {
                     servicioCliente = await servicioClienteManager.ObtenerServicios(Session["Token"].ToString());
                     InicializarControles(); 
@@ -38,38 +36,6 @@ namespace AppIBULACIT.Views
             }
 
         }
-
-
-        private void ObtenerDatosGrafico()
-        {
-
-            StringBuilder script = new StringBuilder();
-            StringBuilder labelsGraficoVistas = new StringBuilder();
-            StringBuilder dataGraficoVistas = new StringBuilder();
-            StringBuilder backgroundcolorsGraficoVistas = new StringBuilder();
-
-            var random = new Random();
-
-            foreach (var servicio in servicioCliente.GroupBy(info => info.TipoAyuda).
-                Select(group => new {
-                    TipoAyuda = group.Key,
-                    Cantidad = group.Count()
-                }).OrderBy(x => x.TipoAyuda))
-            {
-                string color = String.Format("#{0:X6}", random.Next(0x1000000));
-                labelsGraficoVistas.Append(string.Format("'{0}',", servicio.TipoAyuda)); // 'Correo','frmError',
-                dataGraficoVistas.Append(string.Format("'{0}',", servicio.Cantidad)); // '2','3',
-                backgroundcolorsGraficoVistas.Append(string.Format("'{0}',", color));
-
-                labelsGraficoVistasGlobal = labelsGraficoVistas.ToString().Substring(0, labelsGraficoVistas.Length - 1);
-                dataGraficoVistasGlobal = dataGraficoVistas.ToString().Substring(0, dataGraficoVistas.Length - 1);
-                backgroundcolorsGraficoVistasGlobal =
-                    backgroundcolorsGraficoVistas.ToString().Substring(backgroundcolorsGraficoVistas.Length - 1);
-            }
-
-        }
-
-
         private async void InicializarControles()
         {
 
@@ -98,6 +64,35 @@ namespace AppIBULACIT.Views
                 lblStatus.Text = "Hubo un error al cargar la lista de servicios.";
                 lblStatus.Visible = true;
             }
+        }
+
+        private void ObtenerDatosGrafico()
+        {
+
+            StringBuilder script = new StringBuilder();
+            StringBuilder labelsGraficoVistas = new StringBuilder();
+            StringBuilder dataGraficoVistas = new StringBuilder();
+            StringBuilder backgroundcolorsGraficoVistas = new StringBuilder();
+
+            var random = new Random();
+
+            foreach (var servicio in servicioCliente.GroupBy(info => info.TipoAyuda).
+                Select(group => new {
+                    TipoAyuda = group.Key,
+                    Cantidad = group.Count()
+                }).OrderBy(x => x.TipoAyuda))
+            {
+                string color = String.Format("#{0:X6}", random.Next(0x1000000));
+                labelsGraficoVistas.Append(string.Format("'{0}',", servicio.TipoAyuda)); // 'Correo','frmError',
+                dataGraficoVistas.Append(string.Format("'{0}',", servicio.Cantidad)); // '2','3',
+                backgroundcolorsGraficoVistas.Append(string.Format("'{0}',", color));
+
+                labelsGraficoVistasGlobal = labelsGraficoVistas.ToString().Substring(0, labelsGraficoVistas.Length - 1);
+                dataGraficoVistasGlobal = dataGraficoVistas.ToString().Substring(0, dataGraficoVistas.Length - 1);
+                backgroundcolorsGraficoVistasGlobal =
+                    backgroundcolorsGraficoVistas.ToString().Substring(backgroundcolorsGraficoVistas.Length - 1);
+            }
+
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
