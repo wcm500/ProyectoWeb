@@ -8,6 +8,8 @@ using AppIBULACIT.Models;
 using AppIBULACIT.Controllers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Web.Security;
+using NPOI.SS.Formula.Functions;
+using System.Configuration;
 
 namespace AppIBULACIT
 {
@@ -15,8 +17,10 @@ namespace AppIBULACIT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
+
+        
 
         protected async void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -42,6 +46,31 @@ namespace AppIBULACIT
                         Session["Email"] = usuario.Email;
                         Session["Estado"] = usuario.Estado;
                         Session["Token"] = usuario.Token;
+
+                        SesionManager sessionManager = new SesionManager();
+                        Sesion sesion = new Sesion
+                        {
+                            CodigoUsuario = Convert.ToInt32(Session["CodigoUsuario"].ToString()),
+                            Estado = "A",
+                            FechaInicio = DateTime.Now,
+                            FechaExpiracion = DateTime.Now.AddMinutes(5)
+                        };
+                        Sesion sessionIniciada = await sessionManager.Ingresar(sesion,usuario.Token);
+
+                        EstadisticaManager estadisticaManager = new EstadisticaManager();
+                        Estadistica estadistica = new Estadistica
+                        {
+                            CodigoUsuario = Convert.ToInt32(Session["CodigoUsuario"].ToString()),
+                            FechaHora = DateTime.Now,
+                            Navegador = Request.Browser.Browser,
+                            PlataformaDispositivo = Request.Browser.Platform,
+                            FabricanteDispositivo = "Microsoft",
+                            Vista = Convert.ToString(Request.Url).Split('/').Last(),
+                            Accion = "InicializarControles"
+                        };
+                        Estadistica estadisticaIngresada = await estadisticaManager.Ingresar(estadistica);
+
+
 
                         FormsAuthentication.RedirectFromLoginPage(usuario.Username, false);
                     }

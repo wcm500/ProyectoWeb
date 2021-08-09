@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.1.9, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.1\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -77,6 +83,18 @@
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.11.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.4\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.4\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.4\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.4\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -257,10 +275,12 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\frmCuenta.aspx" />
+    <Content Include="Views\FrmEstadistica.aspx" />
     <Content Include="Views\frmMoneda.aspx" />
     <Content Include="Views\frmPrestamo.aspx" />
     <Content Include="Views\frmServicio.aspx" />
     <Content Include="Views\frmServicioCliente.aspx" />
+    <Content Include="Views\FrmSesion.aspx" />
     <Content Include="Views\frmSolicitidTarjeta.aspx" />
     <Content Include="Views\frmSucursal.aspx" />
     <Content Include="Views\frmTipoPrestamo.aspx" />
@@ -377,6 +397,13 @@
     <Compile Include="Views\frmCuenta.aspx.designer.cs">
       <DependentUpon>frmCuenta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\FrmEstadistica.aspx.cs">
+      <DependentUpon>FrmEstadistica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FrmEstadistica.aspx.designer.cs">
+      <DependentUpon>FrmEstadistica.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmMoneda.aspx.cs">
       <DependentUpon>frmMoneda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -404,6 +431,13 @@
     </Compile>
     <Compile Include="Views\frmServicioCliente.aspx.designer.cs">
       <DependentUpon>frmServicioCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmSesion.aspx.cs">
+      <DependentUpon>FrmSesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FrmSesion.aspx.designer.cs">
+      <DependentUpon>FrmSesion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\frmSolicitidTarjeta.aspx.cs">
       <DependentUpon>frmSolicitidTarjeta.aspx</DependentUpon>

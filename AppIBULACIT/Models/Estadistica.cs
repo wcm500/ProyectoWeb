@@ -16,6 +16,6 @@ namespace AppIBULACIT.Models
         public string Vista { get; set; }
         public string Accion { get; set; }
 
-        public virtual Usuario Usuario { get; set; }
+        //public virtual Usuario Usuario { get; set; }
     }
 }

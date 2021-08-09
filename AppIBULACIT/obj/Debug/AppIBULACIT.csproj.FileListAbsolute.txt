@@ -358,8 +358,6 @@ C:\Users\orlan\Documents\GitHub\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.cs
 C:\Users\orlan\Documents\GitHub\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.CopyComplete
 C:\Users\orlan\Documents\GitHub\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.dll
 C:\Users\orlan\Documents\GitHub\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.pdb
-D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.App.config
-D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.CoreCompileInputs.cache
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\AppIBULACIT.dll.config
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\AppIBULACIT.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\AppIBULACIT.pdb
@@ -415,6 +413,8 @@ D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\roslyn\VBCSCompil
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Antlr3.Runtime.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\AspNet.ScriptManager.bootstrap.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\AspNet.ScriptManager.jQuery.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\BouncyCastle.Crypto.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\ICSharpCode.SharpZipLib.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.AspNet.FriendlyUrls.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.Bcl.AsyncInterfaces.dll
@@ -433,6 +433,10 @@ D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.ScriptM
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.ScriptManager.WebForms.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.Web.Infrastructure.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Newtonsoft.Json.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\NPOI.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\NPOI.OOXML.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\NPOI.OpenXml4Net.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\NPOI.OpenXmlFormats.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.Buffers.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.Diagnostics.DiagnosticSource.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.IdentityModel.Tokens.Jwt.dll
@@ -454,6 +458,9 @@ D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.Web.Webpag
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.Web.Webpages.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.Web.Webpages.Razor.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\WebGrease.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\BouncyCastle.Crypto.xml
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\ICSharpCode.SharpZipLib.pdb
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\ICSharpCode.SharpZipLib.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.Extensions.DependencyInjection.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
@@ -465,6 +472,8 @@ D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.Extensi
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.IdentityModel.JsonWebTokens.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.IdentityModel.Logging.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\NPOI.xml
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\NPOI.OOXML.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.Buffers.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.Diagnostics.DiagnosticSource.xml
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\System.IdentityModel.Tokens.Jwt.xml
@@ -500,6 +509,8 @@ D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\es\System.Web.Web
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\es\System.Web.Webpages.Razor.resources.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\es\System.Web.Helpers.resources.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\bin\es\System.Web.Mvc.resources.dll
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.App.config
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.CoreCompileInputs.cache
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.csproj.CopyComplete
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\AppIBULACIT\obj\Debug\AppIBULACIT.pdb

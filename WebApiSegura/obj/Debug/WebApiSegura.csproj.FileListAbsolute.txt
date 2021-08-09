@@ -449,8 +449,8 @@ D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\bin\es\System.Web.We
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\bin\es\System.Web.WebPages.Razor.resources.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.csproj.App.config
-D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.csprojAssemblyReference.cache
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.csproj.CoreCompileInputs.cache
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.csproj.CopyComplete
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.dll
 D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.pdb
+D:\Mineria de datos\PROYECTO FINAL\ProyectoWeb\WebApiSegura\obj\Debug\WebApiSegura.csprojAssemblyReference.cache

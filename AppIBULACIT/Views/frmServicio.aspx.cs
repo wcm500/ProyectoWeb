@@ -18,6 +18,7 @@ namespace AppIBULACIT.Views
         protected void Page_Load(object sender, EventArgs e)
         {
             InicializarControles();
+
         }
 
         private async void InicializarControles()
@@ -27,6 +28,9 @@ namespace AppIBULACIT.Views
                 servicios = await servicioManager.ObtenerServicios(Session["Token"].ToString());
                 gvServicios.DataSource = servicios.ToList();
                 gvServicios.DataBind();
+                
+
+
             }
             catch (Exception ex)
             {
@@ -102,8 +106,8 @@ namespace AppIBULACIT.Views
                 };
 
                 Servicio servicioIngresado = await servicioManager.Ingresar(servicio,Session["Token"].ToString());
-
-                if(!string.IsNullOrEmpty(servicioIngresado.Descripcion))
+                
+                if (!string.IsNullOrEmpty(servicioIngresado.Descripcion))
                 {
                     lblResultado.Text = "Servicio ingresado con exito";
                     lblResultado.Visible = true;

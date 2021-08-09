@@ -12,7 +12,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-<%--    <script type="text/javascript">
+    <script type="text/javascript">
         $.noConflict();
         jQuery(document).ready(function ($) {
             $('[id*=gvServicioCliente]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
@@ -27,7 +27,7 @@
                 ]
             });
         });
-    </script>--%>
+    </script>
 
     <script type="text/javascript">
        
