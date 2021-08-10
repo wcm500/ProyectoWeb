@@ -321,7 +321,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
     <EntitySet Name="Errores" EntityType="Self.Errores" />
     <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />

@@ -17,22 +17,29 @@ namespace AppIBULACIT.Controllers
         
         string UrlBase = "http://localhost:49220/api/Estadistica/";
 
-        public async Task<Estadistica> Ingresar(Estadistica estadistica)
+        HttpClient GetClient(string token)
         {
             HttpClient httpClient = new HttpClient();
 
-            var response = await httpClient.PostAsync(UrlBase,
-                new StringContent(JsonConvert.SerializeObject(estadistica),
-                Encoding.UTF8,
-                "application/json"));
+            httpClient.DefaultRequestHeaders.Add("Authorization", token);
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
 
-            return JsonConvert.DeserializeObject<Estadistica>(await
-                response.Content.ReadAsStringAsync());
+            return httpClient;
+        }
+
+        public async Task<Estadistica> Ingresar(Estadistica estadistica,string token)
+        {
+            HttpClient httpClient = GetClient(token);
+
+            var response = await httpClient.PostAsync(UrlBase,
+                new StringContent(JsonConvert.SerializeObject(estadistica), Encoding.UTF8, "application/json"));
+
+            return JsonConvert.DeserializeObject<Estadistica>(await response.Content.ReadAsStringAsync());
         }
 
         public async Task<IEnumerable<Estadistica>> ObtenerEstadisticas(string token)
         {
-            HttpClient httpClient = new HttpClient();
+            HttpClient httpClient = GetClient(token);
 
             var response = await httpClient.GetStringAsync(UrlBase);
 

@@ -35,11 +35,11 @@
         <asp:BoundField HeaderText="Codigo" DataField="Codigo"/>
          <asp:BoundField HeaderText="Plazos" DataField="Plazos" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundField HeaderText="Fecha Inicio" DataField="FechaInicio" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundField HeaderText="Monto Pago" DataField="MontoPago" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundField HeaderText="Monto Pago" DataField="MontoPago" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundField HeaderText="Tipo Prestamo" DataField="TipoPrestamo" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundField HeaderText="Interes" DataField="Interes" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
-         <asp:BoundField HeaderText="Codigo Cuenta" DataField="CodigoCuenta" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundField HeaderText="Codigo Sucursal" DataField="CodigoSucursal" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundField HeaderText="Interes" DataField="Interes" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Right" />
+         <asp:BoundField HeaderText="Codigo Cuenta" DataField="CodigoCuenta" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundField HeaderText="Codigo Sucursal" DataField="CodigoSucursal" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Right" />
         <asp:ButtonField HeaderText="Modificar" CommandName="Modificar" ControlStyle-CssClass="btn btn-primary" ButtonType="Button" Text="Modificar" />
         <asp:ButtonField HeaderText="Eliminar" CommandName="Eliminar" ControlStyle-CssClass="btn btn-danger" ButtonType="Button" Text="Eliminar" />
     </Columns>

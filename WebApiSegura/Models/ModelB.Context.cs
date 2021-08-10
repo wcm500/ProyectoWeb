@@ -13,10 +13,10 @@ namespace WebApiSegura.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class INTERNET_BAKIN_ULACIT_DWEntities2 : DbContext
+    public partial class INTERNET_BAKIN_ULACIT_DWEntities3 : DbContext
     {
-        public INTERNET_BAKIN_ULACIT_DWEntities2()
-            : base("name=INTERNET_BAKIN_ULACIT_DWEntities2")
+        public INTERNET_BAKIN_ULACIT_DWEntities3()
+            : base("name=INTERNET_BAKIN_ULACIT_DWEntities3")
         {
         }
     

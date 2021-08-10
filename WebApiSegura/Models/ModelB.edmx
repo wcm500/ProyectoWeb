@@ -139,6 +139,8 @@
           </Key>
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="TipoTasa" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInscripcion" Type="datetime" />
         </EntityType>
         <EntityType Name="TipoTarjeta">
           <Key>
@@ -146,6 +148,8 @@
           </Key>
           <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FechaIngreso" Type="datetime" />
+          <Property Name="Categoria" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Transferencia">
           <Key>
@@ -521,6 +525,8 @@
           </Key>
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoTasa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInscripcion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Prestamos" Relationship="Self.FK_Prestamos_Tipo_Prestamo" FromRole="Tipo_Prestamo" ToRole="Prestamos" />
         </EntityType>
         <EntityType Name="TipoTarjeta">
@@ -529,6 +535,8 @@
           </Key>
           <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SolicitidTarjeta" Relationship="Self.FK_SolicitidTarjeta_TipoTarjeta" FromRole="TipoTarjeta" ToRole="SolicitidTarjeta" />
         </EntityType>
         <EntityType Name="Transferencia">
@@ -692,7 +700,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
           <EntitySet Name="Errores" EntityType="Self.Errores" />
           <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />
@@ -759,7 +767,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities2">
+        <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities3">
           <EntitySetMapping Name="Cuenta">
             <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">
@@ -905,6 +913,8 @@
               <MappingFragment StoreEntitySet="Tipo Prestamo">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoTasa" ColumnName="TipoTasa" />
+                <ScalarProperty Name="FechaInscripcion" ColumnName="FechaInscripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -913,6 +923,8 @@
               <MappingFragment StoreEntitySet="TipoTarjeta">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

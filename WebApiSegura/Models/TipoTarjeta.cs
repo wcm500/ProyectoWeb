@@ -22,6 +22,8 @@ namespace WebApiSegura.Models
     
         public int Codigo { get; set; }
         public string Descripcion { get; set; }
+        public Nullable<System.DateTime> FechaIngreso { get; set; }
+        public string Categoria { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SolicitidTarjeta> SolicitidTarjeta { get; set; }
