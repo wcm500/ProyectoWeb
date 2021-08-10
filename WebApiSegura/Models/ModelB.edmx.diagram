@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0f923f76d3e54dc28aa9f1c04827ee1a" Name="Diagram1">
+      <Diagram DiagramId="04cc9fc47c314894a4647cd1a179a86a" Name="Diagram1">
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.Cuenta" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.Errores" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="INTERNET_BAKIN_ULACIT_DWModel.Estadistica" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />

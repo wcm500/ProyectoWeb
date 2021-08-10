@@ -692,7 +692,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
           <EntitySet Name="Errores" EntityType="Self.Errores" />
           <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />
@@ -759,7 +759,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities1">
+        <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities2">
           <EntitySetMapping Name="Cuenta">
             <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">
