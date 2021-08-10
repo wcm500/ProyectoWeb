@@ -13,6 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
     <script type="text/javascript">
+
         $.noConflict();
         jQuery(document).ready(function ($) {
             $('[id*=gvServicioCliente]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
@@ -46,16 +47,8 @@
         function CloseMantenimiento() {
             $('#myModalMantenimiento').modal('hide'); //cierra ventana de mantenimiento
         }
-
-        $(document).ready(function () { //filtrar el datagridview
-            $("#myInput").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#MainContent_gvServicioCliente tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
     </script> 
+
     <h1><asp:Label Text="Mantenimiento de servicio cliente" runat="server"></asp:Label></h1>
     <asp:GridView ID="gvServicioCliente" OnRowCommand="gvServicioCliente_RowCommand" runat="server" AutoGenerateColumns="False" 
         CssClass="table table-sm" HeaderStyle-CssClass="thead-dark" HeaderStyle-BackColor="#243054"

@@ -64,11 +64,11 @@ namespace AppIBULACIT
                             FechaHora = DateTime.Now,
                             Navegador = Request.Browser.Browser,
                             PlataformaDispositivo = Request.Browser.Platform,
-                            FabricanteDispositivo = Request.Browser.MobileDeviceManufacturer,
+                            FabricanteDispostivo = Request.Browser.MobileDeviceManufacturer,
                             Vista = Convert.ToString(Request.Url).Split('/').Last(),
                             Accion = "InicializarControles"
                         };
-                        Estadistica estadisticaIngresada = await estadisticaManager.Ingresar(estadistica,usuario.Token);
+                        Estadistica estadisticaIngresada = await estadisticaManager.Ingresar(estadistica);
 
 
 

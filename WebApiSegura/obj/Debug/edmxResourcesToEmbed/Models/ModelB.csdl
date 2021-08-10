@@ -150,6 +150,8 @@
     </Key>
     <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TipoTasa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaInscripcion" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Prestamos" Relationship="Self.FK_Prestamos_Tipo_Prestamo" FromRole="Tipo_Prestamo" ToRole="Prestamos" />
   </EntityType>
   <EntityType Name="TipoTarjeta">
@@ -158,6 +160,8 @@
     </Key>
     <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+    <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="SolicitidTarjeta" Relationship="Self.FK_SolicitidTarjeta_TipoTarjeta" FromRole="TipoTarjeta" ToRole="SolicitidTarjeta" />
   </EntityType>
   <EntityType Name="Transferencia">
@@ -321,7 +325,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="INTERNET_BAKIN_ULACIT_DWEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
     <EntitySet Name="Errores" EntityType="Self.Errores" />
     <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />

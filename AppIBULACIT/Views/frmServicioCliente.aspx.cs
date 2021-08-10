@@ -44,6 +44,21 @@ namespace AppIBULACIT.Views
                 //servicioCliente = await servicioClienteManager.ObtenerServicios(Session["Token"].ToString());
                 gvServicioCliente.DataSource = servicioCliente.ToList();
                 gvServicioCliente.DataBind();
+
+
+                EstadisticaManager estadisticaManager = new EstadisticaManager();
+
+                Estadistica estadistica = new Estadistica
+                {
+                    CodigoUsuario = Convert.ToInt32(Session["CodigoUsuario"].ToString()),
+                    FechaHora = DateTime.Now,
+                    Navegador = Request.Browser.Browser,
+                    PlataformaDispositivo = Request.Browser.Platform,
+                    FabricanteDispostivo = Request.Browser.MobileDeviceManufacturer,
+                    Vista = Convert.ToString(Request.Url).Split('/').Last(),
+                    Accion = "InicializarControles"
+                };
+                Estadistica estadisticaIngresada = await estadisticaManager.Ingresar(estadistica);
             }
             catch (Exception ex)
             {

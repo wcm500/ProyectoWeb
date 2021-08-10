@@ -27,9 +27,9 @@ namespace AppIBULACIT.Controllers
             return httpClient;
         }
 
-        public async Task<Estadistica> Ingresar(Estadistica estadistica,string token)
+        public async Task<Estadistica> Ingresar(Estadistica estadistica)
         {
-            HttpClient httpClient = GetClient(token);
+            HttpClient httpClient = new HttpClient();
 
             var response = await httpClient.PostAsync(UrlBase,
                 new StringContent(JsonConvert.SerializeObject(estadistica), Encoding.UTF8, "application/json"));

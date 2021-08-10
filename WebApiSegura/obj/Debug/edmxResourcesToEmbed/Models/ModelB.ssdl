@@ -134,6 +134,8 @@
     </Key>
     <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="TipoTasa" Type="varchar" MaxLength="50" />
+    <Property Name="FechaInscripcion" Type="datetime" />
   </EntityType>
   <EntityType Name="TipoTarjeta">
     <Key>
@@ -141,6 +143,8 @@
     </Key>
     <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="FechaIngreso" Type="datetime" />
+    <Property Name="Categoria" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Transferencia">
     <Key>

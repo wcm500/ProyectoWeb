@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities2">
+  <EntityContainerMapping StorageEntityContainer="INTERNET_BAKIN_ULACIT_DWModelStoreContainer" CdmEntityContainer="INTERNET_BAKIN_ULACIT_DWEntities3">
     <EntitySetMapping Name="Cuenta">
       <EntityTypeMapping TypeName="INTERNET_BAKIN_ULACIT_DWModel.Cuenta">
         <MappingFragment StoreEntitySet="Cuenta">
@@ -146,6 +146,8 @@
         <MappingFragment StoreEntitySet="Tipo Prestamo">
           <ScalarProperty Name="Codigo" ColumnName="Codigo" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="TipoTasa" ColumnName="TipoTasa" />
+          <ScalarProperty Name="FechaInscripcion" ColumnName="FechaInscripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -154,6 +156,8 @@
         <MappingFragment StoreEntitySet="TipoTarjeta">
           <ScalarProperty Name="Codigo" ColumnName="Codigo" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

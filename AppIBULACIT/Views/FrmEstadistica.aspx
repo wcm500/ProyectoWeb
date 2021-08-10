@@ -42,10 +42,10 @@
         <asp:BoundField HeaderText="Navegador" DataField="Navegador" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" >
 <ItemStyle HorizontalAlign="Left" Wrap="False"></ItemStyle>
         </asp:BoundField>
-        <asp:BoundField HeaderText="Plataforma Dispositivo" DataField="PlataformaDispositivo" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" >
+        <asp:BoundField HeaderText="Fabricante Dispostivo" DataField="FabricanteDispostivo" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" >
 <ItemStyle HorizontalAlign="Left" Wrap="False"></ItemStyle>
         </asp:BoundField>
-        <asp:BoundField HeaderText="Fabricante Dispostivo" DataField="FabricanteDispostivo" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" >
+        <asp:BoundField HeaderText="Plataforma Dispositivo" DataField="PlataformaDispositivo" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" >
 <ItemStyle HorizontalAlign="Left" Wrap="False"></ItemStyle>
         </asp:BoundField>
         <asp:BoundField HeaderText="Vista" DataField="Vista" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" >
@@ -68,38 +68,33 @@
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
     <asp:Label ID="lblStatus" ForeColor="Maroon" runat="server" Visible="false" />
-    <%-- <--%><%--div class="row">
+    <div class="row">
             <div class="col-sm">
      <div id="canvas-holder" style="width:40%">
 		            <canvas id="vistas-chart"></canvas>
 	            </div>
               <script >
+                  $.noConflict();
                   new Chart(document.getElementById("vistas-chart"), {
-                      type: 'bar',
+                      type: 'polarArea',
                       data: {
                           labels: [<%= this.labelsGraficoVistasGlobal %>],
                           datasets: [{
-                              label: "Errores por vista",
+                              label: "Tickets por tipo ayuda",
                               backgroundColor: [<%= this.backgroundcolorsGraficoVistasGlobal %>],
                         data: [<%= this.dataGraficoVistasGlobal %>]
                           }]
                       },
                       options: {
+                          responsive: true,
                           title: {
                               display: true,
-                              text: 'Errores por vista'
+                              text: 'Tickets por tipo ayuda'
                           }
                       }
                   });
               </script>
                 </div>
             </div>
-
-
-
-
-
-
---%>
 
 </asp:Content>
