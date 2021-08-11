@@ -12,7 +12,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
     <script type="text/javascript">
-
        $.noConflict();
         jQuery(document).ready(function ($) {
             $('[id*=gvSurcursales]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
