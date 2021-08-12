@@ -3,21 +3,26 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <%--<link href="Stylesheet.css" rel="stylesheet" type="text/css" />--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="Scripts/bootstrap.js" rel="stylesheet">
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src=”js/popper.min.js”></script>
+    <script src="Scripts/bootstrap.js"></script>
+
 
     <style>
-                    .column {
-              float: left;
-              width: 50%;
-              padding: 7px;
-            }
-                    .card .card-footer .stats .material-icons {
-  position: relative;
-  top: -10px;
-  margin-right: 3px;
-  margin-left: 3px;
-  font-size: 18px;
-}
+   .column {
+    float: left;
+    width: 50%;
+    padding: 7px;
+     }
+      .card .card-footer .stats .material-icons {
+                      position: relative;
+                      top: -10px;
+                      margin-right: 3px;
+                      margin-left: 3px;
+                      font-size: 18px;
+                    }
 
 /* Clear floats after the columns */
         .row:after {
@@ -27,12 +32,12 @@
         }
 
         .card .card-stats {
-    background: transparent;
-    display: flex;
+        background: transparent;
+        display: flex;
 
 
 }
-        .card .card-header .card-title {
+       /* .card .card-header .card-title {
           margin-bottom: 3px;
           text-align: center;
            margin-top: 15px;
@@ -42,32 +47,32 @@
           padding-top: 10px;
           margin-bottom: 0.75rem;
 
-        }
+        }*/
 
         .astyle{
             text-align: center;
         }
 
         .card-footer {
-  padding: 0.75rem 1.25rem;
-  background-color: #fff;
-  border-top: 1px solid #eeeeee;
-  border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
-  padding: 0.9375rem 1.875rem;
-}
+          padding: 0.75rem 1.25rem;
+          background-color: #fff;
+          border-top: 1px solid #eeeeee;
+          border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+          padding: 0.9375rem 1.875rem;
+         }
 
 
 
         .card {
-    border: 0;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    border-radius: 6px;
-    color: #333;
-    background: #fff;
-    width: 200%;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
-    }
+        border: 0;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        border-radius: 6px;
+        color: #333;
+        background: #fff;
+        width: 200%;
+        box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+        }
         html[dir="rtl"] .card.card-chart {
           direction: ltr;
         }
@@ -107,41 +112,68 @@
               padding: 1px;
          }
 
+        .divbackTree {
+              height: 400px;
+              border-radius: 3px;
+              background: #FCFCFC;
+              box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+              border-radius: 6px;
+         }
+
     </style>
-
     <div class="jumbotron">
-        <h1>Dash Board Admin</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-   <%-- <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon"></div>
-                    <p class="card-category">Estadistica</p>
-
-                </div>
-
-
-
-
+        <div class="card-body">
+        <h1>Dash Board </h1>
+        <p class="lead">Control bancario de la aplicación de todos los movimientos transferencias ocurridas en tiempo real</p>
             </div>
+    </div>
 
+   <%-- <div class="card-deck">
+  <div class="card">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <img class="card-img-top" src="img/ganancia.png" " alt="Card image cap">
+          </div>
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>--%>
 
-        </div>
-
-
-    </div>--%>
-
+    <div class="container">
     <div class="row">
-            <div class="col-lg-3 col-md-2 col-sm-6">
-              <div class="card card-stats">
+        <div class="column col-md-4">
+            <div class="col-sm-6">
+              <div class="card text-white bg-secondary mb-3">
                 <div class="card-header card-header-warning card-header-icon">
-                  <h3 class="card-title">Soporte Cliente
+                    
+                  <h3 style="text-align:center" class="card-title"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>   Soporte Cliente
                   </h3>
                 </div>
-                <div class="card-footer">
+                <div class="card-text">
                   <div class="stats">
                     <%--<a class="astyle" href="Views/frmServicioCliente.aspx">Mantenimiento de servicio cliente</a>--%>
                   </div>
@@ -149,6 +181,107 @@
               </div>
             </div>
          </div>
+           <div class="column col-md-4">
+            <div class="col-sm-6">
+              <div class="card text-white bg-primary  mb-3">
+                <div class="card-header card-header-warning card-header-icon">
+                  <h3 style="text-align:center" class="card-title"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>   Soporte Cliente
+                  </h3>
+                </div>
+                <div class="card-text">
+                  <div class="stats">
+                    <%--<a class="astyle" href="Views/frmServicioCliente.aspx">Mantenimiento de servicio cliente</a>--%>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+        <div class="column col-md-4"">
+            <div class="col-sm-6">
+              <div class="card text-white bg-success mb-3">
+                <div class="card-header card-header-warning card-header-icon">
+                  <h3 style="text-align:center" class="card-title"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>   Soporte Cliente
+                  </h3>
+                </div>
+                <div class="card-text">
+                  <div class="stats">
+                    <%--<a class="astyle" href="Views/frmServicioCliente.aspx">Mantenimiento de servicio cliente</a>--%>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+
+        </div>
+       </div>
+
+        <div class="row">
+        <div class="col-md-4">
+             <div class="divbackTree">
+
+
+
+             </div>
+            
+           
+        </div>
+        <div class="col-md-4">
+            <div class="divbackTree">
+
+
+
+            </div>
+          
+           
+        </div>
+        <div class="col-md-4">
+            <div class="divbackTree">
+
+
+
+            </div>
+        
+        </div>
+    </div>
+
+   
+
+
+    <div class="container">
+    <div class="row">
+        <div class="column">
+            <div class="col-sm-6">
+              <div class="card text-white bg-danger mb-3">
+                <div class="card-header card-header-warning card-header-icon">
+                    
+                  <h3 style="text-align:center" class="card-title"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>   Soporte Cliente
+                  </h3>
+                </div>
+                <div class="card-text">
+                  <div class="stats">
+                    <%--<a class="astyle" href="Views/frmServicioCliente.aspx">Mantenimiento de servicio cliente</a>--%>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+           <div class="column">
+            <div class="col-sm-6">
+              <div class="card text-white bg-info mb-3">
+                <div class="card-header card-header-warning card-header-icon">
+                  <h3 style="text-align:center" class="card-title"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>   Soporte Cliente
+                  </h3>
+                </div>
+                <div class="card-text">
+                  <div class="stats">
+                    <%--<a class="astyle" href="Views/frmServicioCliente.aspx">Mantenimiento de servicio cliente</a>--%>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+        </div>
+       </div>
     
     <div class="row">
         <div class="column">
@@ -182,49 +315,7 @@
         <div class="column">
             <div class="divback"></div>
         </div>
-        <div class="column">
-            <div class="divback"></div>
-        </div>
     </div>
 
-
-   
-
-
-
-
-
-    <div class="row">
-
-
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
 
 </asp:Content>

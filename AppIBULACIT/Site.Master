@@ -39,13 +39,13 @@
             </Scripts>
         </asp:ScriptManager>
 
-      <nav class="navbar navbar-inverse">
+      <nav style="font-size:medium" class="navbar navbar-inverse navbar-expand-md fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">Internet Banking ULACIT</a>
+              <a style="font-size:large" class="navbar-brand" href="/Default.aspx">Internet Banking ULACIT</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Menu principal</a></li>
+              <li class="active"><a href="/Default.aspx">Menu principal</a></li>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimiento
                 <span class="caret"></span></a>
@@ -84,8 +84,8 @@
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Errores</a></li>
-                  <li><a href="Views/FrmSesion.aspx">Sesiones</a></li>
-                    <li><a href="Views/FrmEstadistica.aspx">Estadisticas</a></li>
+                  <li><a href="/Views/FrmSesion.aspx">Sesiones</a></li>
+                    <li><a href="/Views/FrmEstadistica.aspx">Estadisticas</a></li>
                
                 </ul>
               </li>

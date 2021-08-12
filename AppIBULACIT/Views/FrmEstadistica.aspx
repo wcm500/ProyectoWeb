@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" Async="true" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FrmEstadistica.aspx.cs" Inherits="AppIBULACIT.Views.FrmEstadistica" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <p></p>
+    <p></p>
      <h1><asp:Label Text="Estadisticas" runat="server"></asp:Label></h1>
   
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -11,18 +13,20 @@
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $.noConflict();
+    jQuery(document).ready(function ($) {
         $('[id*=gvEstadisticas]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
             dom: 'Bfrtip',
             'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [0] }],
             'iDisplayLength': 5,
             buttons: [
-                { extend: 'copy', text: 'Copiar a teclado', className: 'exportExcel', exportOptions: { modifier: { page: 'all' } } },
-                { extend: 'excel', text: 'Exportar a Excel', className: 'exportExcel', filename: 'Estadisticas_Excel', exportOptions: { modifier: { page: 'all' } } },
-                { extend: 'csv', text: 'Exportar a CSV', className: 'exportExcel', filename: 'Estadisticas_Csv', exportOptions: { modifier: { page: 'all' } } },
-                { extend: 'pdf', text: 'Exportar a PDF', className: 'exportExcel', filename: 'Estadisticas_Pdf', orientation: 'landscape', pageSize: 'LEGAL', exportOptions: { modifier: { page: 'all' }, columns: ':visible' } }
+                { extend: 'copy', text: 'Copiar Tabla', className: 'exportExcel', exportOptions: { modifier: { page: 'all' } } },
+                { extend: 'excel', text: 'Exportar a Excel', className: 'exportExcel', filename: 'Errores_Excel', exportOptions: { modifier: { page: 'all' } } },
+                { extend: 'csv', text: 'Exportar a CSV', className: 'exportExcel', filename: 'Errores_Csv', exportOptions: { modifier: { page: 'all' } } },
+                { extend: 'pdf', text: 'Exportar a PDF', className: 'exportExcel', filename: 'Errores_Pdf', orientation: 'landscape', pageSize: 'LEGAL', exportOptions: { modifier: { page: 'all' }, columns: ':visible' } }
             ]
         });
     });
