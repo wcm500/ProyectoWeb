@@ -54,7 +54,7 @@
         HeaderStyle-ForeColor="White" AlternatingRowStyle-BackColor="LightBlue" Width="100%">
     <Columns>
         <asp:BoundField HeaderText="Codigo Servicio" DataField="CodigoServicio"/>
-        <asp:BoundField HeaderText="Codigo Usuario" DataField="CodigoUsuario" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundField HeaderText="Codigo Usuario" DataField="CodigoUsuario" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundField HeaderText="Fecha Creacion" DataField="FechaCreacion" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundField HeaderText="Tipo Ayuda" DataField="TipoAyuda" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Left" />

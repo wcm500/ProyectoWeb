@@ -1,10 +1,12 @@
 ﻿using AppIBULACIT.Controllers;
 using AppIBULACIT.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,6 +18,10 @@ namespace AppIBULACIT.Views
     {
         IEnumerable<TipoTarjeta> tipoTarjet = new ObservableCollection<TipoTarjeta>();
         TipoTarjetaManager tipoTarjetaManager = new TipoTarjetaManager();
+
+        public string labelsGraficoVistasGlobal = string.Empty;
+        public string dataGraficoVistasGlobal = string.Empty;
+        public string backgroundcolorsGraficoVistasGlobal = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -62,6 +68,8 @@ namespace AppIBULACIT.Views
                     btnAceptarMant.ControlStyle.CssClass = "btn btn-primary";
                     txtCodigoMant.Text = row.Cells[0].Text.Trim();
                     txtDescripcion.Text = row.Cells[1].Text.Trim();
+                    txtFechaIngreso.Text = row.Cells[2].Text.Trim();
+                    ddlCategoria.Text = row.Cells[3].Text.Trim();
                     btnAceptarMant.Visible = true;
                     ScriptManager.RegisterStartupScript(this,
                 this.GetType(), "LaunchServerSide", "$(function() {openModalMantenimiento(); } );", true);
@@ -87,22 +95,29 @@ namespace AppIBULACIT.Views
             txtCodigoMant.Visible = true;
             txtDescripcion.Visible = true;
             ltrDescripcion.Visible = true;
+            ltrFechaIngreso.Visible = true;
+            txtFechaIngreso.Visible = true;
+            ddlCategoria.Enabled = true;
             txtCodigoMant.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
+            txtFechaIngreso.Text = string.Empty;
+
             ScriptManager.RegisterStartupScript(this,
             this.GetType(), "LaunchServerSide", "$(function() {openModalMantenimiento(); } );", true);
 
         }
 
         protected async void btnAceptarMant_Click(object sender, EventArgs e)
-        {        
-           if (string.IsNullOrEmpty(txtCodigoMant.Text))//Insertar
-             {
+        {
+            if (string.IsNullOrEmpty(txtCodigoMant.Text))//Insertar
+            {
                 if (ValidarInsertar())
                 {
                     TipoTarjeta tipoTarjeta = new TipoTarjeta()
                     {
                         Descripcion = txtDescripcion.Text,
+                        FechaIngreso = DateTime.Now,
+                        Categoria = ddlCategoria.SelectedValue
                     };
 
                     TipoTarjeta tipoTarjetaIngresado = await tipoTarjetaManager.Ingresar(tipoTarjeta, Session["Token"].ToString());
@@ -123,13 +138,16 @@ namespace AppIBULACIT.Views
                 }
             }
             else //Modificar
+            {
+                if (ValidarModificar())
                 {
-                  if (ValidarModificar())
-                    {                       
-                        TipoTarjeta tipoTarjeta = new TipoTarjeta()
+                    TipoTarjeta tipoTarjeta = new TipoTarjeta()
                     {
                         Codigo = Convert.ToInt32(txtCodigoMant.Text),
                         Descripcion = txtDescripcion.Text,
+                        FechaIngreso = DateTime.Now,
+                        Categoria = ddlCategoria.SelectedValue
+
                     };
 
                     TipoTarjeta tipoTarjetaModificado = await tipoTarjetaManager.Actualizar(tipoTarjeta, Session["Token"].ToString());
@@ -152,19 +170,19 @@ namespace AppIBULACIT.Views
             }
         }
         protected async void btnAceptarModal_Click(object sender, EventArgs e)
-            {
+        {
             try
+            {
+                string resultado = string.Empty;
+                resultado = await tipoTarjetaManager.Eliminar(lblCodigoEliminar.Text, Session["Token"].ToString());
+                if (!string.IsNullOrEmpty(resultado))
                 {
-                    string resultado = string.Empty;
-                    resultado = await tipoTarjetaManager.Eliminar(lblCodigoEliminar.Text, Session["Token"].ToString());
-                    if (!string.IsNullOrEmpty(resultado))
-                    {
-                        lblCodigoEliminar.Text = string.Empty;
-                        ltrModalMensaje.Text = " eliminado";
-                        btnAceptarModal.Visible = false;
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { openModal(); });", true);
-                        InicializarControles();
-                    }
+                    lblCodigoEliminar.Text = string.Empty;
+                    ltrModalMensaje.Text = " eliminado";
+                    btnAceptarModal.Visible = false;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { openModal(); });", true);
+                    InicializarControles();
+                }
             }
             catch (Exception ex)
             {
@@ -181,8 +199,8 @@ namespace AppIBULACIT.Views
                 };
                 Error errorIngresado = await errorManager.Ingresar(error);
             }
-          }
-        
+        }
+
 
         protected void btnCancelarModal_Click(object sender, EventArgs e)
         {
@@ -198,7 +216,7 @@ namespace AppIBULACIT.Views
         //Validaciones importantes
         private bool ValidarInsertar()
         {
-            if  (string.IsNullOrEmpty(txtDescripcion.Text))                                  
+            if (string.IsNullOrEmpty(txtDescripcion.Text))
             {
                 lblStatus.Text = "Debe ingresar la descripcion";
                 lblStatus.ForeColor = Color.Maroon;

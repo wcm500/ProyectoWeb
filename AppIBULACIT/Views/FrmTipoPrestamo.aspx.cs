@@ -64,7 +64,8 @@ namespace AppIBULACIT.Views
                     btnAceptarMant.ControlStyle.CssClass = "btn btn-primary";
                     txtCodigoMant.Text = row.Cells[0].Text.Trim();
                     txtDescripcion.Text = row.Cells[1].Text.Trim();
-
+                    ddlEstadoMant.Text = row.Cells[2].Text.Trim();
+                    txtFechaInscripcion.Text = row.Cells[3].Text.Trim();
                     btnAceptarMant.Visible = true;
                     ScriptManager.RegisterStartupScript(this,
                 this.GetType(), "LaunchServerSide", "$(function() {openModalMantenimiento(); } );", true);
@@ -89,8 +90,12 @@ namespace AppIBULACIT.Views
             txtCodigoMant.Visible = true;
             txtDescripcion.Visible = true;
             ltrDescripcion.Visible = true;
+            ddlEstadoMant.Enabled = true;
+            txtFechaInscripcion.Visible = true;
+            ltrFechaInscripcion.Visible = true;
             txtCodigoMant.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
+            txtFechaInscripcion.Text = string.Empty;
             ScriptManager.RegisterStartupScript(this,
                 this.GetType(), "LaunchServerSide", "$(function() {openModalMantenimiento(); } );", true);
         }
@@ -109,7 +114,7 @@ namespace AppIBULACIT.Views
                 if (!string.IsNullOrEmpty(resultado))
                 {
                     lblCodigoEliminar.Text = string.Empty;
-                    ltrModalMensaje.Text = "Sucursal eliminado";
+                    ltrModalMensaje.Text = "Tipo Prestamo eliminado";
                     btnAceptarModal.Visible = false;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { openModal(); });", true);
                     InicializarControles();
@@ -142,7 +147,9 @@ namespace AppIBULACIT.Views
                 {
                     Tipo_Prestamo tipo_prestamo = new Tipo_Prestamo()
                     {
-                        Descripcion = txtDescripcion.Text
+                        Descripcion = txtDescripcion.Text,
+                        TipoTasa = ddlEstadoMant.SelectedValue,
+                        FechaInscripcion = DateTime.Now
                     };
 
                     Tipo_Prestamo TipoPrestamoIngresado = await tipoprestamoManager.Ingresar(tipo_prestamo, Session["Token"].ToString());
@@ -170,7 +177,9 @@ namespace AppIBULACIT.Views
                     Tipo_Prestamo tipo_prestamo = new Tipo_Prestamo()
                     {
                         Codigo = Convert.ToInt32(txtCodigoMant.Text),
-                        Descripcion = txtDescripcion.Text
+                        Descripcion = txtDescripcion.Text,
+                        TipoTasa = ddlEstadoMant.SelectedValue,
+                        FechaInscripcion = DateTime.Now
                     };
 
                     Tipo_Prestamo TipoPrestamoModificado = await tipoprestamoManager.Actualizar(tipo_prestamo, Session["Token"].ToString());
@@ -191,7 +200,7 @@ namespace AppIBULACIT.Views
                     }
                 }
             }
-         }
+        }
 
 
         private bool ValidarInsertar()

@@ -26,10 +26,6 @@ namespace AppIBULACIT.Views
         IEnumerable<Sucursal> sucursals = new ObservableCollection<Sucursal>();
         SucursalManager sucursalManager = new SucursalManager();
 
-
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
