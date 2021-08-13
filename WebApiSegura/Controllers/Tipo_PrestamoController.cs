@@ -17,7 +17,7 @@ namespace WebApiSegura.Controllers
         [HttpGet]
         public IHttpActionResult GetId(int id)
         {
-            Tipo_Prestamo tipo_prestamo= new Tipo_Prestamo();
+            Tipo_Prestamo tipo_prestamo = new Tipo_Prestamo();
 
             try
             {
@@ -35,8 +35,10 @@ namespace WebApiSegura.Controllers
 
                     while (sqlDataReader.Read())
                     {
-                        tipo_prestamo.Codigo= sqlDataReader.GetInt32(0);
+                        tipo_prestamo.Codigo = sqlDataReader.GetInt32(0);
                         tipo_prestamo.Descripcion = sqlDataReader.GetString(1);
+                        tipo_prestamo.TipoTasa = sqlDataReader.GetString(2);
+                        tipo_prestamo.FechaInscripcion = sqlDataReader.GetDateTime(3);
 
                     }
 
@@ -59,7 +61,7 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"SELECT Codigo, Descripcion FROM [Tipo Prestamo]", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand(@"SELECT* FROM  [Tipo Prestamo]", sqlConnection);
 
                     sqlConnection.Open();
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
@@ -68,6 +70,8 @@ namespace WebApiSegura.Controllers
                         Tipo_Prestamo tipo_prestamo = new Tipo_Prestamo();
                         tipo_prestamo.Codigo = sqlDataReader.GetInt32(0);
                         tipo_prestamo.Descripcion = sqlDataReader.GetString(1);
+                        tipo_prestamo.TipoTasa = sqlDataReader.GetString(2);
+                        tipo_prestamo.FechaInscripcion = sqlDataReader.GetDateTime(3);
                         tiposprestamos.Add(tipo_prestamo);
                     }
                     sqlConnection.Close();
@@ -91,10 +95,13 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"INSERT INTO [Tipo Prestamo] (Descripcion)
-                                                                                VALUES (@Descripcion) ", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand(@"INSERT INTO [Tipo Prestamo] (Descripcion, TipoTasa, FechaInscripcion)
+                                                                                VALUES (@Descripcion, @TipoTasa, @FechaInscripcion) ", sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Descripcion", tipo_prestamo.Descripcion);
+                    sqlCommand.Parameters.AddWithValue("@TipoTasa", tipo_prestamo.TipoTasa);
+                    sqlCommand.Parameters.AddWithValue("@FechaInscripcion", tipo_prestamo.FechaInscripcion);
+
 
 
 
@@ -124,11 +131,16 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"UPDATE [Tipo Prestamo] SET Descripcion = @Descripcion
+                    SqlCommand sqlCommand = new SqlCommand(@"UPDATE [Tipo Prestamo] SET Descripcion = @Descripcion,
+                                                                                        TipoTasa = @TipoTasa,
+                                                                                        FechaInscripcion = @FechaInscripcion 
                                                              WHERE Codigo = @Codigo ", sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Codigo", tipo_prestamo.Codigo);
                     sqlCommand.Parameters.AddWithValue("@Descripcion", tipo_prestamo.Descripcion);
+                    sqlCommand.Parameters.AddWithValue("@TipoTasa", tipo_prestamo.TipoTasa);
+                    sqlCommand.Parameters.AddWithValue("@FechaInscripcion", tipo_prestamo.FechaInscripcion);
+
 
 
                     sqlConnection.Open();

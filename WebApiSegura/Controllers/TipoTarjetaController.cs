@@ -25,7 +25,7 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"SELECT Codigo, Descripcion
+                    SqlCommand sqlCommand = new SqlCommand(@"SELECT Codigo, Descripcion, FechaIngreso, Categoria
                                                              FROM   TipoTarjeta
                                                              WHERE Codigo = @Codigo", sqlConnection);
 
@@ -39,6 +39,9 @@ namespace WebApiSegura.Controllers
                     {
                         tipoTarjeta.Codigo = sqlDataReader.GetInt32(0);
                         tipoTarjeta.Descripcion = sqlDataReader.GetString(1);
+                        tipoTarjeta.FechaIngreso = sqlDataReader.GetDateTime(2);
+                        tipoTarjeta.Categoria = sqlDataReader.GetString(3);
+
 
                     }
 
@@ -66,8 +69,8 @@ namespace WebApiSegura.Controllers
                 using (SqlConnection sqlConnection = new
                     SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand(@"SELECT Codigo, Descripcion
-                                                            FROM   TipoTarjeta", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand(@"SELECT Codigo, Descripcion, FechaIngreso, Categoria
+                                                            FROM TipoTarjeta", sqlConnection);
                     sqlConnection.Open();
 
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
@@ -77,7 +80,8 @@ namespace WebApiSegura.Controllers
                         TipoTarjeta tipoTarjeta = new TipoTarjeta();
                         tipoTarjeta.Codigo = sqlDataReader.GetInt32(0);
                         tipoTarjeta.Descripcion = sqlDataReader.GetString(1);
-
+                        tipoTarjeta.FechaIngreso = sqlDataReader.GetDateTime(2);
+                        tipoTarjeta.Categoria = sqlDataReader.GetString(3);
 
                         tipoTarjetas.Add(tipoTarjeta);
                     }
@@ -105,13 +109,14 @@ namespace WebApiSegura.Controllers
                     new SqlConnection(ConfigurationManager.ConnectionStrings["INTERNET_BANKING"].ConnectionString))
                 {
                     SqlCommand sqlCommand =
-                        new SqlCommand(@" INSERT INTO TipoTarjeta (Descripcion) 
-                                         VALUES (@Descripcion)",
+                        new SqlCommand(@" INSERT INTO TipoTarjeta (Descripcion, FechaIngreso, Categoria) 
+                                         VALUES (@Descripcion, @FechaIngreso, @Categoria)",
                                          sqlConnection);
 
 
                     sqlCommand.Parameters.AddWithValue("@Descripcion", tipoTarjeta.Descripcion);
-                  
+                    sqlCommand.Parameters.AddWithValue("@FechaIngreso", tipoTarjeta.FechaIngreso);
+                    sqlCommand.Parameters.AddWithValue("@Categoria", tipoTarjeta.Categoria);
 
                     sqlConnection.Open();
 
@@ -146,13 +151,17 @@ namespace WebApiSegura.Controllers
                     SqlCommand sqlCommand =
                         new SqlCommand(@" UPDATE TipoTarjeta 
                                                         SET 
-                                                            Descripcion = @Descripcion                                                    
+                                                            Descripcion  = @Descripcion,
+                                                            FechaIngreso = @FechaIngreso, 
+                                                            Categoria    = @Categoria
                                           WHERE Codigo = @Codigo",
                                          sqlConnection);
 
                     sqlCommand.Parameters.AddWithValue("@Codigo", tipoTarjeta.Codigo);
                     sqlCommand.Parameters.AddWithValue("@Descripcion", tipoTarjeta.Descripcion);
-         
+                    sqlCommand.Parameters.AddWithValue("@FechaIngreso", tipoTarjeta.FechaIngreso);
+                    sqlCommand.Parameters.AddWithValue("@Categoria", tipoTarjeta.Categoria);
+
 
                     sqlConnection.Open();
 
